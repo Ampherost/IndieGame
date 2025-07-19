@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInputActions inputActions;
     private Vector2 moveInput;
     public Vector2 MoveInputReference => moveInput;
+    public bool IsMoving => moveInput.sqrMagnitude > 0f;
 
     void Awake()
     {

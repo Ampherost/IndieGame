@@ -25,10 +25,12 @@ public class PlayerAnimationScript : MonoBehaviour
         Vector2 input = playerMovement.MoveInputReference;
         if (input != Vector2.zero)
         {
+            //animator.SetBool("IsMoving", playerMovement.IsMoving);
             animator.SetFloat("MoveX", input.x);
             animator.SetFloat("MoveY", input.y);
         }
-        
+        animator.SetBool("IsMoving", playerMovement.IsMoving);
+
 
     }
 }
