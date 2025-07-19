@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInputActions inputActions;
     private Vector2 moveInput;
+    public Vector2 MoveInputReference => moveInput;
 
     void Awake()
     {
@@ -44,10 +45,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Apply velocity; Rigidbody2D.gravityScale should be 0
-        // rb.velocity = moveInput * moveSpeed;
-        // Turns out that the line above is outdated
-
         rb.linearVelocity = moveInput * moveSpeed;
     }
+
 }
 
