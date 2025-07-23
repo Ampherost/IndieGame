@@ -143,10 +143,10 @@ TextureImporter:
       name: TX Tileset Wall_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 351
-        width: 98
-        height: 130
+        x: 32
+        y: 352
+        width: 96
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,10 +165,10 @@ TextureImporter:
       name: TX Tileset Wall_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 375
-        width: 116
-        height: 106
+        x: 152
+        y: 376
+        width: 114
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,10 +187,10 @@ TextureImporter:
       name: TX Tileset Wall_2
       rect:
         serializedVersion: 2
-        x: 287
-        y: 383
-        width: 12
-        height: 98
+        x: 288
+        y: 384
+        width: 10
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,10 +209,10 @@ TextureImporter:
       name: TX Tileset Wall_3
       rect:
         serializedVersion: 2
-        x: 343
-        y: 383
-        width: 10
-        height: 98
+        x: 344
+        y: 384
+        width: 8
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,10 +231,10 @@ TextureImporter:
       name: TX Tileset Wall_4
       rect:
         serializedVersion: 2
-        x: 383
-        y: 471
-        width: 98
-        height: 10
+        x: 384
+        y: 472
+        width: 96
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,10 +253,10 @@ TextureImporter:
       name: TX Tileset Wall_5
       rect:
         serializedVersion: 2
-        x: 383
-        y: 351
-        width: 66
-        height: 98
+        x: 384
+        y: 352
+        width: 64
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -275,10 +275,10 @@ TextureImporter:
       name: TX Tileset Wall_6
       rect:
         serializedVersion: 2
-        x: 31
-        y: 255
-        width: 130
-        height: 66
+        x: 32
+        y: 256
+        width: 128
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,10 +297,10 @@ TextureImporter:
       name: TX Tileset Wall_7
       rect:
         serializedVersion: 2
-        x: 191
-        y: 255
-        width: 34
-        height: 66
+        x: 192
+        y: 256
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,10 +319,10 @@ TextureImporter:
       name: TX Tileset Wall_8
       rect:
         serializedVersion: 2
-        x: 31
-        y: 159
-        width: 66
-        height: 66
+        x: 32
+        y: 160
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,10 +341,10 @@ TextureImporter:
       name: TX Tileset Wall_9
       rect:
         serializedVersion: 2
-        x: 127
-        y: 159
-        width: 66
-        height: 66
+        x: 128
+        y: 160
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -363,7 +363,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a0c577b8239377047bad83e3fa297822
     internalID: 0
     vertices: []
     indices: 
