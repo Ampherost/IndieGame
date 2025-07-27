@@ -55,13 +55,6 @@ Follow along for devlogs, updates, and early builds as the world of Verdaneth co
 
 ---
 
-## 📫 Contact
-
-For updates, feedback, or collaboration inquiries:  
-**[yourname@email.com]**  
-Twitter / GitHub / itch.io: **@yourhandle**
-
----
 
 ## 🔮 Wishlist Features (Future Milestones)
 
