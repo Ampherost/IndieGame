@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 MoveInputReference => moveInput;
     public bool IsMoving => moveInput.sqrMagnitude > 0f;
 
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
