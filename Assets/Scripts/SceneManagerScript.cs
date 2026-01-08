@@ -37,6 +37,11 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadScene("CombatScene"); 
     }
 
+    public void LoadSettings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
     public void EndGame()
     {
         Application.Quit(); // Quits game
