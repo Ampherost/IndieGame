@@ -32099,7 +32099,9 @@ GameObject:
   - component: {fileID: 2075345932}
   - component: {fileID: 2075345931}
   - component: {fileID: 2075345933}
-  m_Layer: 0
+  - component: {fileID: 2075345935}
+  - component: {fileID: 2075345934}
+  m_Layer: 8
   m_Name: Piplup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32226,6 +32228,45 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.21457034, y: 0.2526668}
   m_EdgeRadius: 0
+--- !u!114 &2075345934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075345930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c948ad239f8274ea53f3d3fa5c92fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCScript
+--- !u!50 &2075345935
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075345930}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

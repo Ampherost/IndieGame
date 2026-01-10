@@ -8,14 +8,12 @@ public class PlayerCollisions : MonoBehaviour
     [Tooltip("Which layers count as 'solid' for collision responses.")]
     public LayerMask solidObjectsLayer;
 
-    /// <summary>
+    public LayerMask interactablesLayer;
+
     /// Fired once when you first collide with a solid object.
-    /// </summary>
     public event Action<Collision2D> OnSolidCollisionEnter;
 
-    /// <summary>
     /// Fired once when you stop colliding with that solid object.
-    /// </summary>
     public event Action<Collision2D> OnSolidCollisionExit;
 
     // keep track of all solid colliders we're in contact with
@@ -24,7 +22,7 @@ public class PlayerCollisions : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // only care about collisions on the solidObjectsLayer
-        if (IsInLayerMask(collision.gameObject.layer, solidObjectsLayer))
+        if (IsInLayerMask(collision.gameObject.layer, solidObjectsLayer | interactablesLayer))
         {
             // if this is our first contact with this collider…
             if (activeSolids.Add(collision.collider))
