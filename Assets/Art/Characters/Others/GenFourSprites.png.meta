@@ -1,0 +1,4524 @@
+fileFormatVersion: 2
+guid: 34ee9527f3ce99244b63747b8d8bcfc0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -111967105643380801
+    second: GenFourSprites_0
+  - first:
+      213: 1653914729246829383
+    second: GenFourSprites_1
+  - first:
+      213: 1019919055667310038
+    second: GenFourSprites_2
+  - first:
+      213: 6022051631306266156
+    second: GenFourSprites_3
+  - first:
+      213: -2145423555086545952
+    second: GenFourSprites_4
+  - first:
+      213: -9076909089095243607
+    second: GenFourSprites_5
+  - first:
+      213: -3180240884228804529
+    second: GenFourSprites_6
+  - first:
+      213: -8441066181840968364
+    second: GenFourSprites_7
+  - first:
+      213: 8219158907166564666
+    second: GenFourSprites_8
+  - first:
+      213: 6447066934117438636
+    second: GenFourSprites_9
+  - first:
+      213: 4311830101851969552
+    second: GenFourSprites_10
+  - first:
+      213: -3065217678063977070
+    second: GenFourSprites_11
+  - first:
+      213: 8698167090579112137
+    second: GenFourSprites_12
+  - first:
+      213: 7821023831355602871
+    second: GenFourSprites_13
+  - first:
+      213: 606158534933023385
+    second: GenFourSprites_14
+  - first:
+      213: -2808628696576141688
+    second: GenFourSprites_15
+  - first:
+      213: 6509242805138232135
+    second: GenFourSprites_16
+  - first:
+      213: -3500762930110453178
+    second: GenFourSprites_17
+  - first:
+      213: -6906275585276444717
+    second: GenFourSprites_18
+  - first:
+      213: -166034102297777638
+    second: GenFourSprites_19
+  - first:
+      213: -4478660201697488251
+    second: GenFourSprites_20
+  - first:
+      213: -3380411906015082169
+    second: GenFourSprites_21
+  - first:
+      213: 772410592915516517
+    second: GenFourSprites_22
+  - first:
+      213: -8026000753593736726
+    second: GenFourSprites_23
+  - first:
+      213: 2988989740822520115
+    second: GenFourSprites_24
+  - first:
+      213: 8811299261754099406
+    second: GenFourSprites_25
+  - first:
+      213: -6553890377042372374
+    second: GenFourSprites_26
+  - first:
+      213: -4678472081714307793
+    second: GenFourSprites_27
+  - first:
+      213: -5147375418477666928
+    second: GenFourSprites_28
+  - first:
+      213: -5189444901527655134
+    second: GenFourSprites_29
+  - first:
+      213: 6743302041383702914
+    second: GenFourSprites_30
+  - first:
+      213: -9190874967974886659
+    second: GenFourSprites_31
+  - first:
+      213: -3659871218881665903
+    second: GenFourSprites_32
+  - first:
+      213: -2218339353688236666
+    second: GenFourSprites_33
+  - first:
+      213: 4580883804572111855
+    second: GenFourSprites_34
+  - first:
+      213: 3333175283872175043
+    second: GenFourSprites_35
+  - first:
+      213: 6606241366744129570
+    second: GenFourSprites_36
+  - first:
+      213: 8797300318635710956
+    second: GenFourSprites_37
+  - first:
+      213: -6222701323197752929
+    second: GenFourSprites_38
+  - first:
+      213: 5870326693752127437
+    second: GenFourSprites_39
+  - first:
+      213: 806544867651944344
+    second: GenFourSprites_40
+  - first:
+      213: 5942351264982173954
+    second: GenFourSprites_41
+  - first:
+      213: -938387836182463698
+    second: GenFourSprites_42
+  - first:
+      213: -7086376291460315981
+    second: GenFourSprites_43
+  - first:
+      213: 2067783176618866396
+    second: GenFourSprites_44
+  - first:
+      213: 3230902223946486713
+    second: GenFourSprites_45
+  - first:
+      213: 7024238082319327138
+    second: GenFourSprites_46
+  - first:
+      213: 5667315883682225518
+    second: GenFourSprites_47
+  - first:
+      213: -7765165945216876726
+    second: GenFourSprites_48
+  - first:
+      213: -97848393739853148
+    second: GenFourSprites_49
+  - first:
+      213: 8569749129391723297
+    second: GenFourSprites_50
+  - first:
+      213: 3443786813171308566
+    second: GenFourSprites_51
+  - first:
+      213: 3007589648561014577
+    second: GenFourSprites_52
+  - first:
+      213: 8063497456851805575
+    second: GenFourSprites_53
+  - first:
+      213: 584072643787669738
+    second: GenFourSprites_54
+  - first:
+      213: 5382136504523917882
+    second: GenFourSprites_55
+  - first:
+      213: 6544891927963242098
+    second: GenFourSprites_56
+  - first:
+      213: -6790542324594894197
+    second: GenFourSprites_57
+  - first:
+      213: 5556851115500863354
+    second: GenFourSprites_58
+  - first:
+      213: 8693813054175381421
+    second: GenFourSprites_59
+  - first:
+      213: 4284761501890144382
+    second: GenFourSprites_60
+  - first:
+      213: -8326442437998548955
+    second: GenFourSprites_61
+  - first:
+      213: -7678468646077214295
+    second: GenFourSprites_62
+  - first:
+      213: -859452791328652113
+    second: GenFourSprites_63
+  - first:
+      213: -401819626634991563
+    second: GenFourSprites_64
+  - first:
+      213: 2305211211553290509
+    second: GenFourSprites_65
+  - first:
+      213: -5601378399683272433
+    second: GenFourSprites_66
+  - first:
+      213: -2071692631280618893
+    second: GenFourSprites_67
+  - first:
+      213: 3825308963874493338
+    second: GenFourSprites_68
+  - first:
+      213: -1535980502480259897
+    second: GenFourSprites_69
+  - first:
+      213: -3454704145354862144
+    second: GenFourSprites_70
+  - first:
+      213: 1087905416882381105
+    second: GenFourSprites_71
+  - first:
+      213: -2085480263089871973
+    second: GenFourSprites_72
+  - first:
+      213: 2788324865774874013
+    second: GenFourSprites_73
+  - first:
+      213: 2187725071713886730
+    second: GenFourSprites_74
+  - first:
+      213: -6885863279296544131
+    second: GenFourSprites_75
+  - first:
+      213: -3837319173149376724
+    second: GenFourSprites_76
+  - first:
+      213: 1479607773844079401
+    second: GenFourSprites_77
+  - first:
+      213: -2045526554452145266
+    second: GenFourSprites_78
+  - first:
+      213: 8531910376159013307
+    second: GenFourSprites_79
+  - first:
+      213: -3521219186194417258
+    second: GenFourSprites_80
+  - first:
+      213: 5766496579962027708
+    second: GenFourSprites_81
+  - first:
+      213: 4162369199642844369
+    second: GenFourSprites_82
+  - first:
+      213: -7399794976804350150
+    second: GenFourSprites_83
+  - first:
+      213: -28379340001757528
+    second: GenFourSprites_84
+  - first:
+      213: 7457612442785056697
+    second: GenFourSprites_85
+  - first:
+      213: 5738434293616003232
+    second: GenFourSprites_86
+  - first:
+      213: 1409581727376644815
+    second: GenFourSprites_87
+  - first:
+      213: -5666511797328377966
+    second: GenFourSprites_88
+  - first:
+      213: 7122433653542066036
+    second: GenFourSprites_89
+  - first:
+      213: 3142355707109995097
+    second: GenFourSprites_90
+  - first:
+      213: -7322982304853340969
+    second: GenFourSprites_91
+  - first:
+      213: 7151493633761031561
+    second: GenFourSprites_92
+  - first:
+      213: 4537583394115461955
+    second: GenFourSprites_93
+  - first:
+      213: -337856679495034406
+    second: GenFourSprites_94
+  - first:
+      213: 7643482334033626371
+    second: GenFourSprites_95
+  - first:
+      213: 1354222485113840421
+    second: GenFourSprites_96
+  - first:
+      213: -2797971122920920241
+    second: GenFourSprites_97
+  - first:
+      213: 5837282775024391201
+    second: GenFourSprites_98
+  - first:
+      213: 3557240780166956593
+    second: GenFourSprites_99
+  - first:
+      213: -6018778674302511163
+    second: GenFourSprites_100
+  - first:
+      213: 2601693032844488188
+    second: GenFourSprites_101
+  - first:
+      213: -7006047153174179598
+    second: GenFourSprites_102
+  - first:
+      213: -237499459666377319
+    second: GenFourSprites_103
+  - first:
+      213: -7182229607941888542
+    second: GenFourSprites_104
+  - first:
+      213: -3593072889906916758
+    second: GenFourSprites_105
+  - first:
+      213: -3794820637968015875
+    second: GenFourSprites_106
+  - first:
+      213: 5252353452988452317
+    second: GenFourSprites_107
+  - first:
+      213: -7810434418673097472
+    second: GenFourSprites_108
+  - first:
+      213: -6498752942933412106
+    second: GenFourSprites_109
+  - first:
+      213: -7506637615125773214
+    second: GenFourSprites_110
+  - first:
+      213: -9149899585579265368
+    second: GenFourSprites_111
+  - first:
+      213: -6444890680015285607
+    second: GenFourSprites_112
+  - first:
+      213: -5093586567705294461
+    second: GenFourSprites_113
+  - first:
+      213: 4294502652804683805
+    second: GenFourSprites_114
+  - first:
+      213: 574652738327405419
+    second: GenFourSprites_115
+  - first:
+      213: -5609824754225054948
+    second: GenFourSprites_116
+  - first:
+      213: -6668431952077295972
+    second: GenFourSprites_117
+  - first:
+      213: 8721755929962557806
+    second: GenFourSprites_118
+  - first:
+      213: -7725072906653185581
+    second: GenFourSprites_119
+  - first:
+      213: -6326901816274456407
+    second: GenFourSprites_120
+  - first:
+      213: -2582170087272100569
+    second: GenFourSprites_121
+  - first:
+      213: 7581017097293041396
+    second: GenFourSprites_122
+  - first:
+      213: 6451514539311626924
+    second: GenFourSprites_123
+  - first:
+      213: -4067153326373100226
+    second: GenFourSprites_124
+  - first:
+      213: -5230359806200887967
+    second: GenFourSprites_125
+  - first:
+      213: -1937627299245044112
+    second: GenFourSprites_126
+  - first:
+      213: -1494698959211815802
+    second: GenFourSprites_127
+  - first:
+      213: 500540048590447361
+    second: GenFourSprites_128
+  - first:
+      213: -9045185095964867207
+    second: GenFourSprites_129
+  - first:
+      213: 8237847161745130050
+    second: GenFourSprites_130
+  - first:
+      213: 4477478825621294695
+    second: GenFourSprites_131
+  - first:
+      213: 5382042272102229835
+    second: GenFourSprites_132
+  - first:
+      213: 2195877085748058335
+    second: GenFourSprites_133
+  - first:
+      213: -6922560630712969517
+    second: GenFourSprites_134
+  - first:
+      213: -3017100711852654586
+    second: GenFourSprites_135
+  - first:
+      213: -719569908125495638
+    second: GenFourSprites_136
+  - first:
+      213: -4772788350295919699
+    second: GenFourSprites_137
+  - first:
+      213: 2641308885101761900
+    second: GenFourSprites_138
+  - first:
+      213: -4511553051029646922
+    second: GenFourSprites_139
+  - first:
+      213: 8163847221162250881
+    second: GenFourSprites_140
+  - first:
+      213: -2328859186609672534
+    second: GenFourSprites_141
+  - first:
+      213: -8002913871554439681
+    second: GenFourSprites_142
+  - first:
+      213: -7250488452570335745
+    second: GenFourSprites_143
+  - first:
+      213: 8603984481701769679
+    second: GenFourSprites_144
+  - first:
+      213: -3319978051835777636
+    second: GenFourSprites_145
+  - first:
+      213: 7827906403622886542
+    second: GenFourSprites_146
+  - first:
+      213: -2366986756211908427
+    second: GenFourSprites_147
+  - first:
+      213: -7868680912570842100
+    second: GenFourSprites_148
+  - first:
+      213: 2859161955902754630
+    second: GenFourSprites_149
+  - first:
+      213: 4451151111791737703
+    second: GenFourSprites_150
+  - first:
+      213: -3939664177709193298
+    second: GenFourSprites_151
+  - first:
+      213: -1078894313057417611
+    second: GenFourSprites_152
+  - first:
+      213: -9086881897374170845
+    second: GenFourSprites_153
+  - first:
+      213: 1475746256850967133
+    second: GenFourSprites_154
+  - first:
+      213: 6320742778323073923
+    second: GenFourSprites_155
+  - first:
+      213: 4888680099815057049
+    second: GenFourSprites_156
+  - first:
+      213: -9207309276133575978
+    second: GenFourSprites_157
+  - first:
+      213: -5866241428759660184
+    second: GenFourSprites_158
+  - first:
+      213: 288378292350693620
+    second: GenFourSprites_159
+  - first:
+      213: 3078999320202942969
+    second: GenFourSprites_160
+  - first:
+      213: 7935824650543127698
+    second: GenFourSprites_161
+  - first:
+      213: -3535523661078071276
+    second: GenFourSprites_162
+  - first:
+      213: 900038210140899774
+    second: GenFourSprites_163
+  - first:
+      213: 642552200734471570
+    second: GenFourSprites_164
+  - first:
+      213: 448990820116511748
+    second: GenFourSprites_165
+  - first:
+      213: 8702802203198116867
+    second: GenFourSprites_166
+  - first:
+      213: 7338996437382879017
+    second: GenFourSprites_167
+  - first:
+      213: 5334443749226220782
+    second: GenFourSprites_168
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GenFourSprites_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 1024
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbff899b286327ef0800000000000000
+      internalID: -111967105643380801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_1
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1024
+        width: 38
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74b2b85fea2e3f610800000000000000
+      internalID: 1653914729246829383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_2
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 1024
+        width: 44
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dda3b43afa772e00800000000000000
+      internalID: 1019919055667310038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 1024
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c26521f6d00a29350800000000000000
+      internalID: 6022051631306266156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 1024
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eb8f42c4ace932e0800000000000000
+      internalID: -2145423555086545952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_5
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 1024
+        width: 40
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a8a6f56647580280800000000000000
+      internalID: -9076909089095243607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 1024
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f403e53f3c38dd3d0800000000000000
+      internalID: -3180240884228804529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_7
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 1024
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4556ec1c70f4bda80800000000000000
+      internalID: -8441066181840968364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 1024
+        width: 42
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a31a626aa71501270800000000000000
+      internalID: 8219158907166564666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_9
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1024
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca49c33f735987950800000000000000
+      internalID: 6447066934117438636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_10
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 1030
+        width: 58
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01819b0f1a2b6db30800000000000000
+      internalID: 4311830101851969552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_11
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 1030
+        width: 58
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29dbfb313c82675d0800000000000000
+      internalID: -3065217678063977070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_12
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 1024
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c006fe42e816b870800000000000000
+      internalID: 8698167090579112137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_13
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 1024
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b7b0dfacbbd98c60800000000000000
+      internalID: 7821023831355602871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_14
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 1024
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a0148d9f1896800800000000000000
+      internalID: 606158534933023385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_15
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 1024
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8865c9ac41fb509d0800000000000000
+      internalID: -2808628696576141688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_16
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 1024
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743180508d9755a50800000000000000
+      internalID: 6509242805138232135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_17
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 1024
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64a29e3b9aaca6fc0800000000000000
+      internalID: -3500762930110453178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_18
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 960
+        width: 34
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dff4aa32faf720a0800000000000000
+      internalID: -6906275585276444717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_19
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 960
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1aa0f71dd022bdf0800000000000000
+      internalID: -166034102297777638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_20
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 960
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5825428864a98d1c0800000000000000
+      internalID: -4478660201697488251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_21
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 960
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 749487b184d5611d0800000000000000
+      internalID: -3380411906015082169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_22
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 960
+        width: 38
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56c6a73875728ba00800000000000000
+      internalID: 772410592915516517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_23
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 960
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae1270396daed9090800000000000000
+      internalID: -8026000753593736726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_24
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 960
+        width: 42
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 331630b35560b7920800000000000000
+      internalID: 2988989740822520115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_25
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 966
+        width: 28
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec6c38a8ef5084a70800000000000000
+      internalID: 8811299261754099406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_26
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 966
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae8d9831d67eb05a0800000000000000
+      internalID: -6553890377042372374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_27
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 966
+        width: 58
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2d16d5ed6ab21fb0800000000000000
+      internalID: -4678472081714307793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_28
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 966
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09d9f003459d098b0800000000000000
+      internalID: -5147375418477666928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_29
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 966
+        width: 42
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d6bfe5b536bf7b0800000000000000
+      internalID: -5189444901527655134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_30
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 960
+        width: 22
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28197d5aa75059d50800000000000000
+      internalID: 6743302041383702914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_31
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 960
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2c3d679e3737080800000000000000
+      internalID: -9190874967974886659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_32
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 960
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 194e1ea6486853dc0800000000000000
+      internalID: -3659871218881665903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_33
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 960
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68d94207c10e631e0800000000000000
+      internalID: -2218339353688236666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_34
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 960
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe35cd8bc81929f30800000000000000
+      internalID: 4580883804572111855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_35
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 960
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c31051c241d14e20800000000000000
+      internalID: 3333175283872175043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_36
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 896
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 220664d85851eab50800000000000000
+      internalID: 6606241366744129570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_37
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 896
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce956ba970a461a70800000000000000
+      internalID: 8797300318635710956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_38
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 902
+        width: 22
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99d177ad1684a9a0800000000000000
+      internalID: -6222701323197752929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_39
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 902
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcfb6909607977150800000000000000
+      internalID: 5870326693752127437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_40
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 896
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89ffecba84c613b00800000000000000
+      internalID: 806544867651944344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_41
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 896
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2090bd7ddf8777250800000000000000
+      internalID: 5942351264982173954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_42
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 900
+        width: 46
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2bfbca1c3d2af2f0800000000000000
+      internalID: -938387836182463698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_43
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 896
+        width: 38
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b402c2ee4228ad90800000000000000
+      internalID: -7086376291460315981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_44
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 896
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd675e2f7dd32bc10800000000000000
+      internalID: 2067783176618866396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_45
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 896
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b39952647876dc20800000000000000
+      internalID: 3230902223946486713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_46
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 902
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af1a62e15b1b7160800000000000000
+      internalID: 7024238082319327138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_47
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 896
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6ddeccf4c956ae40800000000000000
+      internalID: 5667315883682225518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_48
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 896
+        width: 30
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f3365e6b69c3490800000000000000
+      internalID: -7765165945216876726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_49
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 902
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a22b41876f54aef0800000000000000
+      internalID: -97848393739853148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_50
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 902
+        width: 50
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1235b9fbd6ddde670800000000000000
+      internalID: 8569749129391723297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_51
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 896
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61810415cd9cacf20800000000000000
+      internalID: 3443786813171308566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_52
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 896
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1370f98b9da1db920800000000000000
+      internalID: 3007589648561014577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_53
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 896
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785eaeaf63c47ef60800000000000000
+      internalID: 8063497456851805575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_54
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 832
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae0ccf799fa0b1800800000000000000
+      internalID: 584072643787669738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_55
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 832
+        width: 38
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a8fc492a031ba40800000000000000
+      internalID: 5382136504523917882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_56
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 832
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27e029b388024da50800000000000000
+      internalID: 6544891927963242098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_57
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 832
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8a144ecbb523c1a0800000000000000
+      internalID: -6790542324594894197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_58
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 832
+        width: 58
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f7929e5a6ed1d40800000000000000
+      internalID: 5556851115500863354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_59
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 832
+        width: 30
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da707c539e0a6a870800000000000000
+      internalID: 8693813054175381421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_60
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 832
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e786e6362e7867b30800000000000000
+      internalID: 4284761501890144382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_61
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 832
+        width: 34
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 528eb50d7b8827c80800000000000000
+      internalID: -8326442437998548955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_62
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 832
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1d79bd279907590800000000000000
+      internalID: -7678468646077214295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_63
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 832
+        width: 42
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa443a76d3c9214f0800000000000000
+      internalID: -859452791328652113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_64
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 832
+        width: 38
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53824a2bd237c6af0800000000000000
+      internalID: -401819626634991563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_65
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 832
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d09b1e42261cdff10800000000000000
+      internalID: 2305211211553290509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_66
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 832
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f01255ad508e342b0800000000000000
+      internalID: -5601378399683272433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_67
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 833
+        width: 42
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37279b4378edf33e0800000000000000
+      internalID: -2071692631280618893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_68
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 838
+        width: 52
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a935bdb3c3a361530800000000000000
+      internalID: 3825308963874493338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_69
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 838
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c4fcb7fed91faae0800000000000000
+      internalID: -1535980502480259897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_70
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 838
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c1dd0432ec6e00d0800000000000000
+      internalID: -3454704145354862144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_71
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 838
+        width: 46
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1316f727634091f00800000000000000
+      internalID: 1087905416882381105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_72
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 768
+        width: 44
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b93a07400c2ee03e0800000000000000
+      internalID: -2085480263089871973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_73
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 768
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9d66e631be12b620800000000000000
+      internalID: 2788324865774874013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_74
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 768
+        width: 38
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a02e8b59c5c5c5e10800000000000000
+      internalID: 2187725071713886730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_75
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 774
+        width: 54
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d728f9194df7070a0800000000000000
+      internalID: -6885863279296544131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_76
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 768
+        width: 38
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2fb2a20b8a1fbac0800000000000000
+      internalID: -3837319173149376724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_77
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 768
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92302e65e6f988410800000000000000
+      internalID: 1479607773844079401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_78
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 768
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8b4047bf64dc93e0800000000000000
+      internalID: -2045526554452145266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_79
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 768
+        width: 60
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb96d6a784f676670800000000000000
+      internalID: 8531910376159013307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_80
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 768
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 699779e6ecd122fc0800000000000000
+      internalID: -3521219186194417258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_81
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 774
+        width: 50
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbe34275616b60050800000000000000
+      internalID: 5766496579962027708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_82
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 774
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc1db0ebb4b3c930800000000000000
+      internalID: 4162369199642844369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_83
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 768
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a375bd4aca5ae4990800000000000000
+      internalID: -7399794976804350150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_84
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 768
+        width: 38
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a63c30042d2b9ff0800000000000000
+      internalID: -28379340001757528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_85
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 774
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b78cbc2103ce7760800000000000000
+      internalID: 7457612442785056697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_86
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 768
+        width: 58
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a8c6e5269303af40800000000000000
+      internalID: 5738434293616003232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_87
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 774
+        width: 38
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fca9a2edc17df8310800000000000000
+      internalID: 1409581727376644815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_88
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 768
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2978ea4fa818c51b0800000000000000
+      internalID: -5666511797328377966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_89
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 774
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47799afeba7f7d260800000000000000
+      internalID: 7122433653542066036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_90
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 646
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9527630edd3eb9b20800000000000000
+      internalID: 3142355707109995097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_91
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 646
+        width: 36
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dccebe746a8f5a90800000000000000
+      internalID: -7322982304853340969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_92
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 646
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9853bc5d1953f3360800000000000000
+      internalID: 7151493633761031561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_93
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 646
+        width: 54
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343a6f84e0cb8fe30800000000000000
+      internalID: 4537583394115461955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_94
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 646
+        width: 54
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad994b9d321bf4bf0800000000000000
+      internalID: -337856679495034406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_95
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 646
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3054c079faa131a60800000000000000
+      internalID: 7643482334033626371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_96
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 640
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 523ae0cdc2a2bc210800000000000000
+      internalID: 1354222485113840421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_97
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 640
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4b6f76861c9b29d0800000000000000
+      internalID: -2797971122920920241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_98
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 640
+        width: 58
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 124d5d2b1c1320150800000000000000
+      internalID: 5837282775024391201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_99
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 640
+        width: 96
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 136826a74abdd5130800000000000000
+      internalID: 3557240780166956593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_100
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 640
+        width: 90
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c790804fa0097ca0800000000000000
+      internalID: -6018778674302511163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_101
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 646
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfded4d67021b1420800000000000000
+      internalID: 2601693032844488188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_102
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 646
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f09a6bdb3585ce90800000000000000
+      internalID: -7006047153174179598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_103
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 640
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9950d30ff7b34bcf0800000000000000
+      internalID: -237499459666377319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_104
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 518
+        width: 58
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e5a4538938935c90800000000000000
+      internalID: -7182229607941888542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_105
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 512
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6213095e37d22ec0800000000000000
+      internalID: -3593072889906916758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_106
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 518
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfd589f4cb6165bc0800000000000000
+      internalID: -3794820637968015875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_107
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 448
+        width: 26
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddd4c2823ab14e840800000000000000
+      internalID: 5252353452988452317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_108
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 454
+        width: 58
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00561851743cb9390800000000000000
+      internalID: -7810434418673097472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_109
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 454
+        width: 58
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f6fd6951aacfc5a0800000000000000
+      internalID: -6498752942933412106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_110
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 448
+        width: 30
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 264c7d46cd013d790800000000000000
+      internalID: -7506637615125773214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_111
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 448
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a2dd0f1ec6050180800000000000000
+      internalID: -9149899585579265368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_112
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 448
+        width: 28
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9929671b2162f86a0800000000000000
+      internalID: -6444890680015285607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_113
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 448
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 389893fe002ff49b0800000000000000
+      internalID: -5093586567705294461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_114
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 448
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d185563d863299b30800000000000000
+      internalID: 4294502652804683805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_115
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 448
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b63e531fe9399f700800000000000000
+      internalID: 574652738327405419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_116
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 448
+        width: 34
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1bf830bb16e522b0800000000000000
+      internalID: -5609824754225054948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_117
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 448
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e619f6878f473a0800000000000000
+      internalID: -6668431952077295972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_118
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 454
+        width: 28
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e613317fec6e90970800000000000000
+      internalID: 8721755929962557806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_119
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 454
+        width: 28
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d941fede170bc490800000000000000
+      internalID: -7725072906653185581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_120
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 454
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a0ff28c1545238a0800000000000000
+      internalID: -6326901816274456407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_121
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 454
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72dc18e8cf94a2cd0800000000000000
+      internalID: -2582170087272100569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_122
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 454
+        width: 40
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe805052ee253960800000000000000
+      internalID: 7581017097293041396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_123
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 448
+        width: 22
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caaffeaba42688950800000000000000
+      internalID: 6451514539311626924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_124
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 448
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e35ab7e29919e87c0800000000000000
+      internalID: -4067153326373100226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_125
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 384
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1654ae7c7770a67b0800000000000000
+      internalID: -5230359806200887967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_126
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 384
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07e4661cc3a2c15e0800000000000000
+      internalID: -1937627299245044112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_127
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 384
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c98024733c14be0800000000000000
+      internalID: -1494698959211815802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_128
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 384
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1032710b58642f600800000000000000
+      internalID: 500540048590447361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_129
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 384
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9754b53241c097280800000000000000
+      internalID: -9045185095964867207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_130
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 384
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24247cdf856b25270800000000000000
+      internalID: 8237847161745130050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_131
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 384
+        width: 58
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e8d7ae443332e30800000000000000
+      internalID: 4477478825621294695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_132
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 384
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b472ac26eead0ba40800000000000000
+      internalID: 5382042272102229835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_133
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 384
+        width: 42
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd8de624392597e10800000000000000
+      internalID: 2195877085748058335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_134
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 384
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d6df3e98cf1eef90800000000000000
+      internalID: -6922560630712969517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_135
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 384
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 600c17a43ea1126d0800000000000000
+      internalID: -3017100711852654586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_136
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 390
+        width: 22
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aae8e132bf29306f0800000000000000
+      internalID: -719569908125495638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_137
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 390
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da33d706846a3cdb0800000000000000
+      internalID: -4772788350295919699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_138
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 384
+        width: 44
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c65d29ecf60d7a420800000000000000
+      internalID: 2641308885101761900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_139
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 384
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b15c00476eb361c0800000000000000
+      internalID: -4511553051029646922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_140
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 384
+        width: 38
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1829fe13bcfcb4170800000000000000
+      internalID: 8163847221162250881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_141
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 384
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaea93a98ea3eafd0800000000000000
+      internalID: -2328859186609672534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_142
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 384
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff593fd2c30ffe090800000000000000
+      internalID: -8002913871554439681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_143
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 256
+        width: 54
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff53978ca27116b90800000000000000
+      internalID: -7250488452570335745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_144
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 262
+        width: 58
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1beccdc4e776770800000000000000
+      internalID: 8603984481701769679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_145
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 262
+        width: 56
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9d2c364d811de1d0800000000000000
+      internalID: -3319978051835777636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_146
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 262
+        width: 58
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8c92fa666f42ac60800000000000000
+      internalID: 7827906403622886542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_147
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 262
+        width: 58
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b06fe70616c62fd0800000000000000
+      internalID: -2366986756211908427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_148
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 262
+        width: 42
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c04815b6664dcc290800000000000000
+      internalID: -7868680912570842100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_149
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 262
+        width: 90
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f05e086a8cda720800000000000000
+      internalID: 2859161955902754630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_150
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 262
+        width: 48
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76b7eeb5a5aa5cd30800000000000000
+      internalID: 4451151111791737703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_151
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 262
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea7ef49bd408359c0800000000000000
+      internalID: -3939664177709193298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_152
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 262
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5760608a65ff601f0800000000000000
+      internalID: -1078894313057417611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_153
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 262
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321c5170f09e4e180800000000000000
+      internalID: -9086881897374170845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_154
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 262
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ad63ad667ea7410800000000000000
+      internalID: 1475746256850967133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_155
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38bff82711ac7b750800000000000000
+      internalID: 6320742778323073923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_156
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9966ff146a418d340800000000000000
+      internalID: 4888680099815057049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_157
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d236eaeef0193080800000000000000
+      internalID: -9207309276133575978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_158
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869b910508ce69ea0800000000000000
+      internalID: -5866241428759660184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_159
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f03f7c6786800400800000000000000
+      internalID: 288378292350693620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_160
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f99d58819dcaba20800000000000000
+      internalID: 3078999320202942969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_161
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c596f4976b12e60800000000000000
+      internalID: 7935824650543127698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_162
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 418f37656fb4feec0800000000000000
+      internalID: -3535523661078071276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_163
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 134
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb90ab7cbf39d7c00800000000000000
+      internalID: 900038210140899774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_164
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 6
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2957c6a72ddcae800800000000000000
+      internalID: 642552200734471570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_165
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 6
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40cb474a5c22b3600800000000000000
+      internalID: 448990820116511748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_166
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 6
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3045c109e7096c870800000000000000
+      internalID: 8702802203198116867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_167
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 6
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 927501a406a59d560800000000000000
+      internalID: 7338996437382879017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GenFourSprites_168
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 6
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec8eeaa350c70a40800000000000000
+      internalID: 5334443749226220782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5174dbfc3815c1e4a973c64219196c36
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GenFourSprites_0: -111967105643380801
+      GenFourSprites_1: 1653914729246829383
+      GenFourSprites_10: 4311830101851969552
+      GenFourSprites_100: -6018778674302511163
+      GenFourSprites_101: 2601693032844488188
+      GenFourSprites_102: -7006047153174179598
+      GenFourSprites_103: -237499459666377319
+      GenFourSprites_104: -7182229607941888542
+      GenFourSprites_105: -3593072889906916758
+      GenFourSprites_106: -3794820637968015875
+      GenFourSprites_107: 5252353452988452317
+      GenFourSprites_108: -7810434418673097472
+      GenFourSprites_109: -6498752942933412106
+      GenFourSprites_11: -3065217678063977070
+      GenFourSprites_110: -7506637615125773214
+      GenFourSprites_111: -9149899585579265368
+      GenFourSprites_112: -6444890680015285607
+      GenFourSprites_113: -5093586567705294461
+      GenFourSprites_114: 4294502652804683805
+      GenFourSprites_115: 574652738327405419
+      GenFourSprites_116: -5609824754225054948
+      GenFourSprites_117: -6668431952077295972
+      GenFourSprites_118: 8721755929962557806
+      GenFourSprites_119: -7725072906653185581
+      GenFourSprites_12: 8698167090579112137
+      GenFourSprites_120: -6326901816274456407
+      GenFourSprites_121: -2582170087272100569
+      GenFourSprites_122: 7581017097293041396
+      GenFourSprites_123: 6451514539311626924
+      GenFourSprites_124: -4067153326373100226
+      GenFourSprites_125: -5230359806200887967
+      GenFourSprites_126: -1937627299245044112
+      GenFourSprites_127: -1494698959211815802
+      GenFourSprites_128: 500540048590447361
+      GenFourSprites_129: -9045185095964867207
+      GenFourSprites_13: 7821023831355602871
+      GenFourSprites_130: 8237847161745130050
+      GenFourSprites_131: 4477478825621294695
+      GenFourSprites_132: 5382042272102229835
+      GenFourSprites_133: 2195877085748058335
+      GenFourSprites_134: -6922560630712969517
+      GenFourSprites_135: -3017100711852654586
+      GenFourSprites_136: -719569908125495638
+      GenFourSprites_137: -4772788350295919699
+      GenFourSprites_138: 2641308885101761900
+      GenFourSprites_139: -4511553051029646922
+      GenFourSprites_14: 606158534933023385
+      GenFourSprites_140: 8163847221162250881
+      GenFourSprites_141: -2328859186609672534
+      GenFourSprites_142: -8002913871554439681
+      GenFourSprites_143: -7250488452570335745
+      GenFourSprites_144: 8603984481701769679
+      GenFourSprites_145: -3319978051835777636
+      GenFourSprites_146: 7827906403622886542
+      GenFourSprites_147: -2366986756211908427
+      GenFourSprites_148: -7868680912570842100
+      GenFourSprites_149: 2859161955902754630
+      GenFourSprites_15: -2808628696576141688
+      GenFourSprites_150: 4451151111791737703
+      GenFourSprites_151: -3939664177709193298
+      GenFourSprites_152: -1078894313057417611
+      GenFourSprites_153: -9086881897374170845
+      GenFourSprites_154: 1475746256850967133
+      GenFourSprites_155: 6320742778323073923
+      GenFourSprites_156: 4888680099815057049
+      GenFourSprites_157: -9207309276133575978
+      GenFourSprites_158: -5866241428759660184
+      GenFourSprites_159: 288378292350693620
+      GenFourSprites_16: 6509242805138232135
+      GenFourSprites_160: 3078999320202942969
+      GenFourSprites_161: 7935824650543127698
+      GenFourSprites_162: -3535523661078071276
+      GenFourSprites_163: 900038210140899774
+      GenFourSprites_164: 642552200734471570
+      GenFourSprites_165: 448990820116511748
+      GenFourSprites_166: 8702802203198116867
+      GenFourSprites_167: 7338996437382879017
+      GenFourSprites_168: 5334443749226220782
+      GenFourSprites_17: -3500762930110453178
+      GenFourSprites_18: -6906275585276444717
+      GenFourSprites_19: -166034102297777638
+      GenFourSprites_2: 1019919055667310038
+      GenFourSprites_20: -4478660201697488251
+      GenFourSprites_21: -3380411906015082169
+      GenFourSprites_22: 772410592915516517
+      GenFourSprites_23: -8026000753593736726
+      GenFourSprites_24: 2988989740822520115
+      GenFourSprites_25: 8811299261754099406
+      GenFourSprites_26: -6553890377042372374
+      GenFourSprites_27: -4678472081714307793
+      GenFourSprites_28: -5147375418477666928
+      GenFourSprites_29: -5189444901527655134
+      GenFourSprites_3: 6022051631306266156
+      GenFourSprites_30: 6743302041383702914
+      GenFourSprites_31: -9190874967974886659
+      GenFourSprites_32: -3659871218881665903
+      GenFourSprites_33: -2218339353688236666
+      GenFourSprites_34: 4580883804572111855
+      GenFourSprites_35: 3333175283872175043
+      GenFourSprites_36: 6606241366744129570
+      GenFourSprites_37: 8797300318635710956
+      GenFourSprites_38: -6222701323197752929
+      GenFourSprites_39: 5870326693752127437
+      GenFourSprites_4: -2145423555086545952
+      GenFourSprites_40: 806544867651944344
+      GenFourSprites_41: 5942351264982173954
+      GenFourSprites_42: -938387836182463698
+      GenFourSprites_43: -7086376291460315981
+      GenFourSprites_44: 2067783176618866396
+      GenFourSprites_45: 3230902223946486713
+      GenFourSprites_46: 7024238082319327138
+      GenFourSprites_47: 5667315883682225518
+      GenFourSprites_48: -7765165945216876726
+      GenFourSprites_49: -97848393739853148
+      GenFourSprites_5: -9076909089095243607
+      GenFourSprites_50: 8569749129391723297
+      GenFourSprites_51: 3443786813171308566
+      GenFourSprites_52: 3007589648561014577
+      GenFourSprites_53: 8063497456851805575
+      GenFourSprites_54: 584072643787669738
+      GenFourSprites_55: 5382136504523917882
+      GenFourSprites_56: 6544891927963242098
+      GenFourSprites_57: -6790542324594894197
+      GenFourSprites_58: 5556851115500863354
+      GenFourSprites_59: 8693813054175381421
+      GenFourSprites_6: -3180240884228804529
+      GenFourSprites_60: 4284761501890144382
+      GenFourSprites_61: -8326442437998548955
+      GenFourSprites_62: -7678468646077214295
+      GenFourSprites_63: -859452791328652113
+      GenFourSprites_64: -401819626634991563
+      GenFourSprites_65: 2305211211553290509
+      GenFourSprites_66: -5601378399683272433
+      GenFourSprites_67: -2071692631280618893
+      GenFourSprites_68: 3825308963874493338
+      GenFourSprites_69: -1535980502480259897
+      GenFourSprites_7: -8441066181840968364
+      GenFourSprites_70: -3454704145354862144
+      GenFourSprites_71: 1087905416882381105
+      GenFourSprites_72: -2085480263089871973
+      GenFourSprites_73: 2788324865774874013
+      GenFourSprites_74: 2187725071713886730
+      GenFourSprites_75: -6885863279296544131
+      GenFourSprites_76: -3837319173149376724
+      GenFourSprites_77: 1479607773844079401
+      GenFourSprites_78: -2045526554452145266
+      GenFourSprites_79: 8531910376159013307
+      GenFourSprites_8: 8219158907166564666
+      GenFourSprites_80: -3521219186194417258
+      GenFourSprites_81: 5766496579962027708
+      GenFourSprites_82: 4162369199642844369
+      GenFourSprites_83: -7399794976804350150
+      GenFourSprites_84: -28379340001757528
+      GenFourSprites_85: 7457612442785056697
+      GenFourSprites_86: 5738434293616003232
+      GenFourSprites_87: 1409581727376644815
+      GenFourSprites_88: -5666511797328377966
+      GenFourSprites_89: 7122433653542066036
+      GenFourSprites_9: 6447066934117438636
+      GenFourSprites_90: 3142355707109995097
+      GenFourSprites_91: -7322982304853340969
+      GenFourSprites_92: 7151493633761031561
+      GenFourSprites_93: 4537583394115461955
+      GenFourSprites_94: -337856679495034406
+      GenFourSprites_95: 7643482334033626371
+      GenFourSprites_96: 1354222485113840421
+      GenFourSprites_97: -2797971122920920241
+      GenFourSprites_98: 5837282775024391201
+      GenFourSprites_99: 3557240780166956593
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
