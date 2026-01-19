@@ -12,15 +12,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Interact();
-        }
         
     }
 
-    void Interact()
-    {
-        Debug.Log("Interacted");
-    }
 }
