@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    // DialogueManager controls a Canvas UI made with unity assets Canvas -> Panel -> Text component
     public static DialogueManager Instance { get; private set; }
 
     [Header("UI References")]

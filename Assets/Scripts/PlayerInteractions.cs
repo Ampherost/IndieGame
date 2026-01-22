@@ -7,15 +7,18 @@ public class PlayerInteractions : MonoBehaviour
     [Tooltip("Press this key to interact (temporary test).")]
     public KeyCode interactKey = KeyCode.E;
 
-    [Tooltip("Only objects on this layer can be interacted with.")]
+    [Tooltip("Only objects on this layer can be interacted with (optional filter).")]
     public LayerMask interactablesLayer;
 
-    // The interactable object currently in range (for testing)
-    private GameObject currentTarget;
+    [Header("Debug")]
+    public bool enableDebugLogs = true;
+
+    // Current interactable in range
+    private IInteractable current;
 
     private void Awake()
     {
-        // Make sure our collider is a trigger (since this is a proximity detector)
+        // Ensure this collider is a trigger (interaction range)
         Collider2D col = GetComponent<Collider2D>();
         if (!col.isTrigger)
             col.isTrigger = true;
@@ -25,36 +28,77 @@ public class PlayerInteractions : MonoBehaviour
     {
         if (Input.GetKeyDown(interactKey))
         {
-            if (currentTarget != null)
+            if (current != null)
             {
-                Debug.Log($"Interacted with: {currentTarget.name}");
+                if (enableDebugLogs)
+                    Debug.Log($"[Interact] Attempting interact with: {((MonoBehaviour)current).name}");
+
+                current.Interact(gameObject);
             }
             else
             {
-                Debug.Log("No NPC in range to interact with.");
+                if (enableDebugLogs)
+                    Debug.Log("[Interact] No interactable in range.");
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Filter by layer mask
-        if (((1 << other.gameObject.layer) & interactablesLayer) == 0)
+        // Optional layer filter (keeps your old behavior)
+        if (interactablesLayer.value != 0 &&
+            ((1 << other.gameObject.layer) & interactablesLayer.value) == 0)
             return;
 
-        // For now: just pick the first thing that enters range
-        currentTarget = other.gameObject;
+        if (other.TryGetComponent<IInteractable>(out var interactable))
+        {
+            current = interactable;
 
-        Debug.Log($"NPC in range: {currentTarget.name}");
+            if (enableDebugLogs)
+                Debug.Log($"[Interact] In range: {other.name}");
+        }
+        else
+        {
+            // Helpful when debugging layers/colliders
+            if (enableDebugLogs)
+                Debug.Log($"[Interact] Entered range but object has no IInteractable: {other.name}");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject == currentTarget)
+        // Optional layer filter again
+        if (interactablesLayer.value != 0 &&
+            ((1 << other.gameObject.layer) & interactablesLayer.value) == 0)
+            return;
+
+        if (other.TryGetComponent<IInteractable>(out var interactable) && interactable == current)
         {
-            Debug.Log($"NPC out of range: {currentTarget.name}");
-            currentTarget = null;
+            if (enableDebugLogs)
+                Debug.Log($"[Interact] Out of range: {other.name}");
+
+            current = null;
         }
     }
+
+    // Keep this function-style API from version 2
+    public void TryInteract()
+    {
+        if (current != null)
+        {
+            if (enableDebugLogs)
+                Debug.Log($"[Interact] TryInteract() -> {((MonoBehaviour)current).name}");
+
+            current.Interact(gameObject);
+        }
+        else
+        {
+            if (enableDebugLogs)
+                Debug.Log("[Interact] TryInteract() -> No interactable in range.");
+        }
+    }
+
+    public bool HasInteractable => current != null;
 }
+
 
