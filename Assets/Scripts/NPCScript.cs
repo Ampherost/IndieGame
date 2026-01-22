@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class NPCScript : MonoBehaviour
+public class NPCScript : MonoBehaviour, IInteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [TextArea]
+    public string[] lines;
 
-    // Update is called once per frame
-    void Update()
+    public void Interact(GameObject interactor)
     {
-        
+        DialogueManager.Instance.ShowDialogue(lines);
     }
 }
