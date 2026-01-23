@@ -888,8 +888,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -537.5414}
+  m_SizeDelta: {x: 0, y: -1075.0828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1364745893
 MonoBehaviour:
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32780,7 +32780,7 @@ MonoBehaviour:
   lines:
   - yo
   - mhh
-  - i forgor
+  - I am Piplup
 --- !u!50 &2075345935
 Rigidbody2D:
   serializedVersion: 5

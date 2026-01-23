@@ -26,22 +26,23 @@ public class PlayerInteractions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(interactKey))
-        {
-            if (current != null)
-            {
-                if (enableDebugLogs)
-                    Debug.Log($"[Interact] Attempting interact with: {((MonoBehaviour)current).name}");
+        if (!Input.GetKeyDown(interactKey))
+            return;
 
-                current.Interact(gameObject);
-            }
-            else
-            {
-                if (enableDebugLogs)
-                    Debug.Log("[Interact] No interactable in range.");
-            }
+        // If dialogue is currently open, advance it
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen)
+        {
+            if (enableDebugLogs)
+                Debug.Log("[Interact] Advancing dialogue");
+
+            DialogueManager.Instance.NextLine();
+            return;
         }
+
+        // Otherwise, try interacting with something in range
+        TryInteract();
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
