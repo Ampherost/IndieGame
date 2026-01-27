@@ -42,8 +42,14 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Disable();
     }
 
+    private bool DialogueOpen =>
+    DialogueManager.Instance != null && DialogueManager.Instance.IsOpen;
+
     private void OnMovePerformed(InputAction.CallbackContext ctx)
     {
+        if (DialogueOpen)
+            return; // ignore input while dialogue is open
+
         moveInput = ctx.ReadValue<Vector2>();
     }
 
@@ -65,7 +71,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply velocity; Rigidbody2D.gravityScale should be 0
+        if (DialogueOpen)
+        {
+            moveInput = Vector2.zero; // prevents “walking in place” animation
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+
         rb.linearVelocity = moveInput * moveSpeed;
     }
 
