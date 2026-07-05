@@ -1,21 +1,25 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Player-side combat input: click a unit to select it, see its move range,
-/// click a highlighted tile to move there. This is Phase 3 of the roadmap —
-/// turn system and combat resolution build on top of it.
+/// Player-side combat input, now turn-aware.
+/// Flow: select a player unit (player phase only) -> see move range ->
+/// click a reachable tile -> unit slides there -> unit is marked as acted.
+/// (Phase 5 will insert an attack/wait choice between "arrived" and "acted".)
 /// </summary>
 public class CombatController : MonoBehaviour
 {
     [Header("Highlight")]
-    [Tooltip("A simple sprite prefab (e.g. a semi-transparent square) used to mark reachable tiles.")]
+    [Tooltip("A semi-transparent square sprite prefab used to mark reachable tiles.")]
     public GameObject tileHighlightPrefab;
     public Camera combatCamera;
 
     private Unit selectedUnit;
     private HashSet<Vector2Int> reachable = new HashSet<Vector2Int>();
     private readonly List<GameObject> activeHighlights = new List<GameObject>();
+
+    private bool inputLocked;   // true while a unit is animating
 
     private void Awake()
     {
@@ -24,7 +28,11 @@ public class CombatController : MonoBehaviour
 
     private void Update()
     {
-        // Left click
+        // Only the player acts during the player phase, and not mid-animation.
+        if (inputLocked) return;
+        if (TurnManager.Instance == null || TurnManager.Instance.CurrentPhase != Team.Player)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 world = combatCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -32,7 +40,6 @@ public class CombatController : MonoBehaviour
             HandleClick(cell);
         }
 
-        // Right click / escape to deselect
         if (Input.GetMouseButtonDown(1))
             Deselect();
     }
@@ -41,21 +48,18 @@ public class CombatController : MonoBehaviour
     {
         Unit unitAtCell = GridManager.Instance.GetUnitAt(cell);
 
-        // Case 1: clicking a selectable player unit -> select it
         if (unitAtCell != null && unitAtCell.team == Team.Player && !unitAtCell.HasActed)
         {
             Select(unitAtCell);
             return;
         }
 
-        // Case 2: a unit is selected and we clicked a reachable tile -> move
         if (selectedUnit != null && reachable.Contains(cell))
         {
-            MoveSelectedTo(cell);
+            StartCoroutine(MoveSelectedTo(cell));
             return;
         }
 
-        // Case 3: clicked empty / invalid -> deselect
         Deselect();
     }
 
@@ -67,14 +71,24 @@ public class CombatController : MonoBehaviour
         ShowHighlights(reachable);
     }
 
-    private void MoveSelectedTo(Vector2Int dest)
+    private IEnumerator MoveSelectedTo(Vector2Int dest)
     {
         List<Vector2Int> path = FindPath(selectedUnit.Cell, dest, selectedUnit.moveRange);
-        if (path == null) { Deselect(); return; }
+        if (path == null) { Deselect(); yield break; }
 
-        StartCoroutine(selectedUnit.MoveAlong(path));
-        selectedUnit.HasActed = true;   // consumed for this turn (refine when turn system lands)
-        Deselect();
+        Unit acting = selectedUnit;
+        ClearHighlights();
+        reachable.Clear();
+        inputLocked = true;
+
+        yield return StartCoroutine(acting.MoveAlong(path));
+
+        inputLocked = false;
+        selectedUnit = null;
+
+        // For now, moving completes the unit's turn.
+        // Phase 5 will pop an attack/wait menu here before notifying.
+        TurnManager.Instance.NotifyUnitActed(acting);
     }
 
     private void Deselect()
@@ -84,7 +98,7 @@ public class CombatController : MonoBehaviour
         ClearHighlights();
     }
 
-    // ---- BFS pathfinding: reconstructs a shortest path within range ----
+    // ---- BFS pathfinding ----
 
     private List<Vector2Int> FindPath(Vector2Int start, Vector2Int goal, int maxSteps)
     {
@@ -116,7 +130,6 @@ public class CombatController : MonoBehaviour
 
         if (!cameFrom.ContainsKey(goal)) return null;
 
-        // Walk back from goal to start
         var path = new List<Vector2Int>();
         Vector2Int node = goal;
         while (node != start)
