@@ -98,4 +98,42 @@ public class Unit : MonoBehaviour
     {
         return Mathf.Abs(Cell.x - other.x) + Mathf.Abs(Cell.y - other.y);
     }
+
+    /// <summary>True if 'target' is within this unit's attack range from its current cell.</summary>
+    public bool CanAttack(Unit target)
+    {
+        if (target == null || !target.IsAlive) return false;
+        if (target.team == team) return false;              // no friendly fire
+        return DistanceTo(target.Cell) <= attackRange;
+    }
+
+    /// <summary>
+    /// Resolve an attack against 'target': this unit hits first, and if the target
+    /// survives and can reach back, it counterattacks. Returns a short battle log.
+    /// </summary>
+    public string Attack(Unit target)
+    {
+        var log = new System.Text.StringBuilder();
+
+        // Primary strike
+        int before = target.currentHP;
+        target.TakeDamage(attack);
+        int dealt = before - target.currentHP;
+        log.AppendLine($"{unitName} attacks {target.unitName} for {dealt}.");
+
+        // Counterattack, if target survived and has us in range
+        if (target.IsAlive && target.CanAttack(this))
+        {
+            int cBefore = currentHP;
+            TakeDamage(target.attack);
+            int cDealt = cBefore - currentHP;
+            log.AppendLine($"{target.unitName} counters for {cDealt}.");
+        }
+        else if (!target.IsAlive)
+        {
+            log.AppendLine($"{target.unitName} is defeated!");
+        }
+
+        return log.ToString().TrimEnd();
+    }
 }
