@@ -27,6 +27,10 @@ public class CombatController : MonoBehaviour
 
     public Camera combatCamera;
 
+    [Tooltip("Optional: assign the camera controller so selecting a unit attaches the camera to it. " +
+             "If left empty, it's found automatically on the combat camera.")]
+    public CombatCameraController cameraController;
+
     private enum State { Idle, UnitSelected, AwaitingTarget }
     private State state = State.Idle;
 
@@ -40,6 +44,8 @@ public class CombatController : MonoBehaviour
     private void Awake()
     {
         if (combatCamera == null) combatCamera = Camera.main;
+        if (cameraController == null && combatCamera != null)
+            cameraController = combatCamera.GetComponent<CombatCameraController>();
     }
 
     private void Update()
@@ -126,6 +132,10 @@ public class CombatController : MonoBehaviour
 
         // Mark the unit's own cell as a valid "stay here" tile.
         ShowStayHighlight(unit.Cell);
+
+        // Attach the camera to the selected unit so it follows this one.
+        if (cameraController != null)
+            cameraController.FocusOn(unit);
     }
 
     private void ShowStayHighlight(Vector2Int cell)
