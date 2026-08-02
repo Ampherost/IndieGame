@@ -21,6 +21,10 @@ public class CombatController : MonoBehaviour
     [Tooltip("Marker placed on enemies that can be attacked (e.g. red).")]
     public GameObject attackHighlightPrefab;
 
+    [Tooltip("Optional marker for the unit's own cell (the 'stay here' tile, e.g. green). " +
+             "Falls back to the move highlight if left empty.")]
+    public GameObject stayHighlightPrefab;
+
     public Camera combatCamera;
 
     private enum State { Idle, UnitSelected, AwaitingTarget }
@@ -87,6 +91,14 @@ public class CombatController : MonoBehaviour
 
     private void HandleSelectionClick(Vector2Int cell)
     {
+        // If a unit is already selected and the player clicks its own cell,
+        // treat that as "stay put" — skip movement and go to the attack/wait step.
+        if (state == State.UnitSelected && selectedUnit != null && cell == selectedUnit.Cell)
+        {
+            StayInPlace();
+            return;
+        }
+
         Unit unitAtCell = GridManager.Instance.GetUnitAt(cell);
 
         if (unitAtCell != null && unitAtCell.team == Team.Player && !unitAtCell.HasActed)
@@ -111,6 +123,17 @@ public class CombatController : MonoBehaviour
         state = State.UnitSelected;
         reachable = GridManager.Instance.GetReachableCells(unit.Cell, unit.moveRange);
         ShowMoveHighlights(reachable);
+
+        // Mark the unit's own cell as a valid "stay here" tile.
+        ShowStayHighlight(unit.Cell);
+    }
+
+    private void ShowStayHighlight(Vector2Int cell)
+    {
+        GameObject prefab = stayHighlightPrefab != null ? stayHighlightPrefab : moveHighlightPrefab;
+        if (prefab == null) return;
+        Vector3 pos = GridManager.Instance.CellToWorld(cell);
+        activeHighlights.Add(Instantiate(prefab, pos, Quaternion.identity));
     }
 
     private IEnumerator MoveSelectedTo(Vector2Int dest)
@@ -127,7 +150,24 @@ public class CombatController : MonoBehaviour
 
         inputLocked = false;
 
-        // After arriving, check for attack targets.
+        AfterArrival(acting);
+    }
+
+    /// <summary>Unit stays on its current cell (no movement), then proceeds to attack/wait.</summary>
+    private void StayInPlace()
+    {
+        Unit acting = selectedUnit;
+        ClearHighlights();
+        reachable.Clear();
+        AfterArrival(acting);
+    }
+
+    /// <summary>
+    /// Shared step once a unit has settled on its cell (whether it moved or stayed):
+    /// offer attack targets if any exist, otherwise the turn ends.
+    /// </summary>
+    private void AfterArrival(Unit acting)
+    {
         FindTargetsInRange(acting);
         if (targetsInRange.Count > 0)
         {
