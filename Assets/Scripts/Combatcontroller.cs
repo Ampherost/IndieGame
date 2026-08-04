@@ -105,6 +105,18 @@ public class CombatController : MonoBehaviour
             return;
         }
 
+        // If a unit is selected and the player clicks an enemy that's already in range,
+        // attack it directly from the current position (no move needed).
+        if (state == State.UnitSelected && selectedUnit != null)
+        {
+            Unit clicked = GridManager.Instance.GetUnitAt(cell);
+            if (clicked != null && targetsInRange.Contains(clicked))
+            {
+                StartCoroutine(ResolveAttack(selectedUnit, clicked));
+                return;
+            }
+        }
+
         Unit unitAtCell = GridManager.Instance.GetUnitAt(cell);
 
         if (unitAtCell != null && unitAtCell.team == Team.Player && !unitAtCell.HasActed)
@@ -132,6 +144,12 @@ public class CombatController : MonoBehaviour
 
         // Mark the unit's own cell as a valid "stay here" tile.
         ShowStayHighlight(unit.Cell);
+
+        // If enemies are already in range from the current position, show them as
+        // attackable right away so the player can strike without moving first.
+        FindTargetsInRange(unit);
+        if (targetsInRange.Count > 0)
+            ShowAttackHighlights(targetsInRange);
 
         // Attach the camera to the selected unit so it follows this one.
         if (cameraController != null)
