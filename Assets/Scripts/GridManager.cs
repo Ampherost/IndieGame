@@ -1,21 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 /// <summary>
 /// Owns the combat grid: coordinate conversion, bounds, and which unit occupies each cell.
 /// Place one of these in the CombatScene. Uses XY (2D) with cellSize spacing.
+///
+/// Map SHAPE: if a floor Tilemap is assigned, the playable area is exactly the cells
+/// that contain a floor tile — so the map can be any non-rectangular shape (L-shapes,
+/// inlets, holes). You "paint the map" simply by painting floor tiles. With no tilemap
+/// assigned, the grid falls back to a full width × height rectangle.
 /// </summary>
 public class GridManager : MonoBehaviour
 {
     public static GridManager Instance { get; private set; }
 
     [Header("Grid Dimensions")]
+    [Tooltip("Max grid extent. With a floor tilemap, this only needs to be big enough to " +
+             "contain the painted area; empty cells inside it are treated as out-of-bounds.")]
     public int width = 10;
     public int height = 8;
     public float cellSize = 1f;
 
     [Tooltip("World position of the bottom-left corner of cell (0,0).")]
     public Vector2 origin = Vector2.zero;
+
+    [Header("Map Shape")]
+    [Tooltip("Floor tilemap that defines the playable area. A cell is in-bounds only where a " +
+             "floor tile exists. Leave empty to use a solid width × height rectangle.")]
+    public Tilemap floorTilemap;
+
+    [Tooltip("If true, cellSize and origin are auto-aligned to the floor tilemap on Awake.")]
+    public bool alignToTilemap = true;
 
     [Header("Optional")]
     [Tooltip("Tiles on this layer block movement (walls, etc). Leave empty to ignore.")]
@@ -24,12 +40,55 @@ public class GridManager : MonoBehaviour
     // What occupies each cell. null == empty.
     private Unit[,] occupants;
 
+    // Cells that are part of the playable map. Built from the tilemap when present.
+    private HashSet<Vector2Int> validCells;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
 
+        if (floorTilemap != null)
+            BuildShapeFromTilemap();
+
         occupants = new Unit[width, height];
+    }
+
+    /// <summary>
+    /// Derive the playable cells from the floor tilemap. Cells with a tile are valid;
+    /// everything else is out-of-bounds. Also sizes the grid to fit the painted area.
+    /// </summary>
+    private void BuildShapeFromTilemap()
+    {
+        validCells = new HashSet<Vector2Int>();
+
+        BoundsInt bounds = floorTilemap.cellBounds;
+
+        if (alignToTilemap)
+        {
+            // Match spacing and origin to the tilemap so cell coordinates line up.
+            cellSize = floorTilemap.cellSize.x;
+            Vector3 worldMin = floorTilemap.CellToWorld(bounds.min);
+            origin = new Vector2(worldMin.x, worldMin.y);
+        }
+
+        // Remap tilemap cells so the lowest painted cell becomes our (0,0).
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                var tmCell = new Vector3Int(x, y, 0);
+                if (floorTilemap.HasTile(tmCell))
+                {
+                    var local = new Vector2Int(x - bounds.xMin, y - bounds.yMin);
+                    validCells.Add(local);
+                }
+            }
+        }
+
+        // Grow the grid to contain the painted region.
+        width = Mathf.Max(width, bounds.size.x);
+        height = Mathf.Max(height, bounds.size.y);
     }
 
     // ---- Coordinate conversion ----
@@ -51,7 +110,26 @@ public class GridManager : MonoBehaviour
 
     public bool InBounds(Vector2Int cell)
     {
-        return cell.x >= 0 && cell.x < width && cell.y >= 0 && cell.y < height;
+        // Must fall inside the array extents (keeps occupancy indexing safe)...
+        if (cell.x < 0 || cell.x >= width || cell.y < 0 || cell.y >= height)
+            return false;
+
+        // ...and, if a map shape is defined, be one of its painted cells.
+        if (validCells != null)
+            return validCells.Contains(cell);
+
+        return true;   // no shape defined -> full rectangle
+    }
+
+    /// <summary>True if this cell is part of the playable map (same as InBounds).</summary>
+    public bool IsValidCell(Vector2Int cell) => InBounds(cell);
+
+    /// <summary>Manually mark a cell as playable or not (e.g. for destructible terrain).</summary>
+    public void SetCellValid(Vector2Int cell, bool valid)
+    {
+        validCells ??= new HashSet<Vector2Int>();
+        if (valid) validCells.Add(cell);
+        else validCells.Remove(cell);
     }
 
     // ---- Occupancy ----
@@ -136,6 +214,19 @@ public class GridManager : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        // If a shape is built (play mode), outline the actual playable cells.
+        if (validCells != null && validCells.Count > 0)
+        {
+            Gizmos.color = Color.green;
+            foreach (var cell in validCells)
+            {
+                Vector3 center = CellToWorld(cell);
+                Gizmos.DrawWireCube(center, new Vector3(cellSize, cellSize, 0f) * 0.95f);
+            }
+            return;
+        }
+
+        // Otherwise (edit mode / no tilemap) draw the full rectangular grid.
         Gizmos.color = Color.cyan;
         for (int x = 0; x <= width; x++)
         {

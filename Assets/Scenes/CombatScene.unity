@@ -258,6 +258,8 @@ MonoBehaviour:
   height: 10
   cellSize: 1
   origin: {x: -9, y: -5}
+  floorTilemap: {fileID: 798935196}
+  alignToTilemap: 1
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -4422,6 +4424,7 @@ MonoBehaviour:
   attackHighlightPrefab: {fileID: 197638220}
   stayHighlightPrefab: {fileID: 0}
   combatCamera: {fileID: 1660495630}
+  cameraController: {fileID: 0}
 --- !u!4 &1655159041
 Transform:
   m_ObjectHideFlags: 0
