@@ -6,6 +6,9 @@ public enum Team { Player, Enemy }
 /// <summary>
 /// A single combat unit that occupies one grid cell.
 /// Attach to a sprite GameObject in the CombatScene and register it with the grid at start.
+///
+/// A unit holds exactly one cell at a time. PlaceAt() releases the previous cell before
+/// claiming a new one, so teleports / reinforcements / rescue can't leak occupancy.
 /// </summary>
 public class Unit : MonoBehaviour
 {
@@ -34,13 +37,15 @@ public class Unit : MonoBehaviour
     public bool IsAlive => currentHP > 0;
     public bool IsMoving { get; private set; }
 
-    /// <summary>True once this unit holds a real cell on the grid.</summary>
+    /// <summary>True while this unit holds a cell on the grid.</summary>
     public bool IsOnGrid { get; private set; }
 
     private void Start()
     {
         SnapToGrid();
     }
+
+    // ---- Placement ----
 
     /// <summary>
     /// Claim a grid cell based on where this unit was placed in the editor.
@@ -64,20 +69,16 @@ public class Unit : MonoBehaviour
 
         Vector2Int desired = grid.WorldToCell(transform.position);
 
-        if (grid.IsWalkable(desired))
-        {
-            PlaceAt(desired);
+        if (grid.IsWalkable(desired) && PlaceAt(desired))
             return;
-        }
 
         string reason = DescribeBlockage(grid, desired);
 
-        if (grid.TryFindNearestFreeCell(desired, out Vector2Int free))
+        if (grid.TryFindNearestFreeCell(desired, out Vector2Int free) && PlaceAt(free))
         {
             Debug.LogWarning(
                 $"[Unit] '{unitName}' was placed on cell {desired} but {reason}. " +
                 $"Nudged to {free} — fix the placement in the scene.", this);
-            PlaceAt(free);
             return;
         }
 
@@ -85,7 +86,7 @@ public class Unit : MonoBehaviour
             $"[Unit] '{unitName}' could not be placed near {desired} ({reason}) and no free " +
             $"cell was found. Deactivating it so it doesn't stall the turn loop.", this);
 
-        IsOnGrid = false;
+        RemoveFromGrid();
         if (TurnManager.Instance != null) TurnManager.Instance.UnregisterUnit(this);
         gameObject.SetActive(false);
     }
@@ -102,13 +103,82 @@ public class Unit : MonoBehaviour
         return "that cell is blocked by an obstacle";
     }
 
-    /// <summary>Instantly place the unit at a cell and register occupancy.</summary>
-    public void PlaceAt(Vector2Int cell)
+    /// <summary>
+    /// Put the unit on 'cell', releasing whatever cell it held before.
+    ///
+    /// Refuses and returns false if the destination is off-map or held by another unit —
+    /// validation happens before the old cell is released, so a rejected placement leaves
+    /// the unit exactly where it was rather than stranding it off the grid.
+    /// </summary>
+    public bool PlaceAt(Vector2Int cell)
     {
+        var grid = GridManager.Instance;
+        if (grid == null) return false;
+
+        if (!grid.InBounds(cell))
+        {
+            Debug.LogWarning(
+                $"[Unit] '{unitName}' cannot take cell {cell}: outside the playable map.", this);
+            return false;
+        }
+
+        Unit sitting = grid.GetUnitAt(cell);
+        if (sitting != null && sitting != this)
+        {
+            Debug.LogWarning(
+                $"[Unit] '{unitName}' cannot take cell {cell}: " +
+                $"'{sitting.unitName}' is already there.", this);
+            return false;
+        }
+
+        // Release the cell we were holding before claiming the new one.
+        if (IsOnGrid && Cell != cell)
+            grid.ClearCell(Cell, this);
+
         Cell = cell;
-        transform.position = GridManager.Instance.CellToWorld(cell);
-        GridManager.Instance.SetUnit(cell, this);
+        transform.position = grid.CellToWorld(cell);
+        grid.SetUnit(cell, this);
         IsOnGrid = true;
+        return true;
+    }
+
+    /// <summary>
+    /// Instant relocation for teleports, reinforcements, warp-in skills and the like.
+    /// Takes 'cell' when it's free; with allowNudge, falls back to the nearest free cell
+    /// so a summon aimed at an occupied tile lands beside it instead of failing outright.
+    /// Returns false only if nothing suitable was found.
+    /// </summary>
+    public bool TryWarpTo(Vector2Int cell, bool allowNudge = true)
+    {
+        var grid = GridManager.Instance;
+        if (grid == null) return false;
+
+        if ((grid.IsWalkable(cell) || grid.GetUnitAt(cell) == this) && PlaceAt(cell))
+            return true;
+
+        if (!allowNudge) return false;
+
+        if (grid.TryFindNearestFreeCell(cell, out Vector2Int free) && PlaceAt(free))
+        {
+            Debug.Log($"{unitName} warped to {free} ({cell} was unavailable).");
+            return true;
+        }
+
+        Debug.LogWarning($"[Unit] '{unitName}' found no free cell near {cell} to warp to.", this);
+        return false;
+    }
+
+    /// <summary>
+    /// Take the unit off the board without killing it — rescue, capture, retreat, or a
+    /// transport pickup. The tile is freed; the unit stays alive and registered, so put
+    /// it back with PlaceAt / TryWarpTo when it's dropped off.
+    /// </summary>
+    public void RemoveFromGrid()
+    {
+        if (!IsOnGrid) return;
+        if (GridManager.Instance != null)
+            GridManager.Instance.ClearCell(Cell, this);
+        IsOnGrid = false;
     }
 
     /// <summary>Smoothly move along a path (list of adjacent cells), updating occupancy at the end.</summary>
@@ -134,6 +204,7 @@ public class Unit : MonoBehaviour
         Vector2Int dest = path[path.Count - 1];
         GridManager.Instance.MoveUnit(from, dest, this);
         Cell = dest;
+        IsOnGrid = true;
         IsMoving = false;
     }
 
@@ -151,9 +222,7 @@ public class Unit : MonoBehaviour
     {
         Debug.Log($"{unitName} was defeated.");
 
-        // Checked clear: only release the cell if we're the unit recorded there.
-        GridManager.Instance.ClearCell(Cell, this);
-        IsOnGrid = false;
+        RemoveFromGrid();
         gameObject.SetActive(false);
 
         if (TurnManager.Instance != null)
@@ -170,7 +239,8 @@ public class Unit : MonoBehaviour
     public bool CanAttack(Unit target)
     {
         if (target == null || !target.IsAlive) return false;
-        if (target.team == team) return false;              // no friendly fire
+        if (!IsOnGrid || !target.IsOnGrid) return false;     // off-board units are untouchable
+        if (target.team == team) return false;               // no friendly fire
         return DistanceTo(target.Cell) <= attackRange;
     }
 
