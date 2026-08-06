@@ -12,6 +12,8 @@ using UnityEngine;
 ///        - Click a highlighted enemy -> attack resolves -> unit's turn ends.
 ///        - Right-click / click elsewhere -> unit waits -> turn ends.
 ///   4. If no enemies are in range after moving, the turn ends automatically.
+///
+/// Once TurnManager reports CombatOver, all input stops and the board is cleared.
 /// </summary>
 public class CombatController : MonoBehaviour
 {
@@ -39,7 +41,8 @@ public class CombatController : MonoBehaviour
     private readonly List<Unit> targetsInRange = new List<Unit>();
     private readonly List<GameObject> activeHighlights = new List<GameObject>();
 
-    private bool inputLocked;   // true while a unit is animating / resolving
+    private bool inputLocked;         // true while a unit is animating / resolving
+    private bool combatEndHandled;    // ensures the end-of-battle cleanup runs once
 
     private void Awake()
     {
@@ -50,9 +53,17 @@ public class CombatController : MonoBehaviour
 
     private void Update()
     {
-        if (inputLocked) return;
-        if (TurnManager.Instance == null || TurnManager.Instance.CurrentPhase != Team.Player)
+        if (TurnManager.Instance == null) return;
+
+        // Battle resolved: clean up once, then ignore input permanently.
+        if (TurnManager.Instance.CombatOver)
+        {
+            if (!combatEndHandled) HandleCombatEnd();
             return;
+        }
+
+        if (inputLocked) return;
+        if (TurnManager.Instance.CurrentPhase != Team.Player) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -63,6 +74,25 @@ public class CombatController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
             HandleRightClick();
+    }
+
+    /// <summary>
+    /// Runs once when TurnManager reports the battle is over: drop any selection,
+    /// clear leftover highlights, and report the result recorded by TurnManager.
+    /// </summary>
+    private void HandleCombatEnd()
+    {
+        combatEndHandled = true;
+        inputLocked = true;
+        Deselect();
+
+        Team? winner = TurnManager.Instance.Winner;
+        if (winner == Team.Player)
+            Debug.Log("Victory! All enemies defeated.");
+        else if (winner == Team.Enemy)
+            Debug.Log("Defeat! All player units lost.");
+        else
+            Debug.Log("Draw — no units remain on either side.");
     }
 
     private void HandleLeftClick(Vector2Int cell)
@@ -246,10 +276,13 @@ public class CombatController : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);   // brief beat for the exchange
 
+        // The kill may have ended the battle during that pause — if so, stop here and
+        // let Update run the end-of-combat cleanup instead of starting another turn.
+        if (TurnManager.Instance.CombatOver)
+            yield break;
+
         inputLocked = false;
         FinishUnitTurn();
-
-        CheckEndConditions();
     }
 
     private void FinishUnitTurn()
@@ -272,16 +305,6 @@ public class CombatController : MonoBehaviour
         reachable.Clear();
         targetsInRange.Clear();
         ClearHighlights();
-    }
-
-    // ---- Win / loss check ----
-
-    private void CheckEndConditions()
-    {
-        if (!TurnManager.Instance.AnyAlive(Team.Enemy))
-            Debug.Log("Victory! All enemies defeated.");
-        else if (!TurnManager.Instance.AnyAlive(Team.Player))
-            Debug.Log("Defeat! All player units lost.");
     }
 
     // ---- BFS pathfinding ----

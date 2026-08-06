@@ -34,12 +34,72 @@ public class Unit : MonoBehaviour
     public bool IsAlive => currentHP > 0;
     public bool IsMoving { get; private set; }
 
+    /// <summary>True once this unit holds a real cell on the grid.</summary>
+    public bool IsOnGrid { get; private set; }
+
     private void Start()
     {
-        // Snap to nearest cell based on where it was placed in the editor.
+        SnapToGrid();
+    }
+
+    /// <summary>
+    /// Claim a grid cell based on where this unit was placed in the editor.
+    ///
+    /// If that cell is unusable — off the painted map, blocked, or already claimed by
+    /// another unit (Start() order across GameObjects is arbitrary, so which unit gets
+    /// there first is not something to rely on) — the unit is nudged to the nearest free
+    /// cell and a warning names both tiles. A unit that cannot be placed at all is
+    /// deactivated and unregistered, because an unplaceable-but-alive unit can never be
+    /// selected and would stall the player phase forever.
+    /// </summary>
+    public void SnapToGrid()
+    {
         var grid = GridManager.Instance;
-        Vector2Int startCell = grid.WorldToCell(transform.position);
-        PlaceAt(startCell);
+        if (grid == null)
+        {
+            Debug.LogError($"[Unit] '{unitName}' found no GridManager in the scene.", this);
+            enabled = false;
+            return;
+        }
+
+        Vector2Int desired = grid.WorldToCell(transform.position);
+
+        if (grid.IsWalkable(desired))
+        {
+            PlaceAt(desired);
+            return;
+        }
+
+        string reason = DescribeBlockage(grid, desired);
+
+        if (grid.TryFindNearestFreeCell(desired, out Vector2Int free))
+        {
+            Debug.LogWarning(
+                $"[Unit] '{unitName}' was placed on cell {desired} but {reason}. " +
+                $"Nudged to {free} — fix the placement in the scene.", this);
+            PlaceAt(free);
+            return;
+        }
+
+        Debug.LogError(
+            $"[Unit] '{unitName}' could not be placed near {desired} ({reason}) and no free " +
+            $"cell was found. Deactivating it so it doesn't stall the turn loop.", this);
+
+        IsOnGrid = false;
+        if (TurnManager.Instance != null) TurnManager.Instance.UnregisterUnit(this);
+        gameObject.SetActive(false);
+    }
+
+    private string DescribeBlockage(GridManager grid, Vector2Int cell)
+    {
+        if (!grid.InBounds(cell))
+            return "that cell is outside the playable map";
+
+        Unit other = grid.GetUnitAt(cell);
+        if (other != null)
+            return $"'{other.unitName}' ({other.name}) is already standing there";
+
+        return "that cell is blocked by an obstacle";
     }
 
     /// <summary>Instantly place the unit at a cell and register occupancy.</summary>
@@ -48,6 +108,7 @@ public class Unit : MonoBehaviour
         Cell = cell;
         transform.position = GridManager.Instance.CellToWorld(cell);
         GridManager.Instance.SetUnit(cell, this);
+        IsOnGrid = true;
     }
 
     /// <summary>Smoothly move along a path (list of adjacent cells), updating occupancy at the end.</summary>
@@ -89,8 +150,14 @@ public class Unit : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{unitName} was defeated.");
-        GridManager.Instance.ClearCell(Cell);
+
+        // Checked clear: only release the cell if we're the unit recorded there.
+        GridManager.Instance.ClearCell(Cell, this);
+        IsOnGrid = false;
         gameObject.SetActive(false);
+
+        if (TurnManager.Instance != null)
+            TurnManager.Instance.NotifyUnitDied(this);
     }
 
     /// <summary>Manhattan distance to another cell — used for attack range checks.</summary>
@@ -136,4 +203,30 @@ public class Unit : MonoBehaviour
 
         return log.ToString().TrimEnd();
     }
+
+#if UNITY_EDITOR
+    // ---- Edit-time overlap warning ----
+    // Draws the cell this unit will snap to. Red means another unit snaps to the same
+    // cell, so you can catch duplicate placement before entering play mode.
+    private void OnDrawGizmos()
+    {
+        GridManager grid = GridManager.Instance != null
+            ? GridManager.Instance
+            : FindFirstObjectByType<GridManager>();
+        if (grid == null) return;
+
+        Vector2Int myCell = grid.WorldToCell(transform.position);
+        bool clash = false;
+
+        foreach (var other in FindObjectsByType<Unit>(FindObjectsSortMode.None))
+        {
+            if (other == this) continue;
+            if (grid.WorldToCell(other.transform.position) == myCell) { clash = true; break; }
+        }
+
+        Gizmos.color = clash ? Color.red : new Color(1f, 1f, 1f, 0.35f);
+        Gizmos.DrawWireCube(grid.CellToWorld(myCell),
+                            new Vector3(grid.cellSize, grid.cellSize, 0f) * 0.9f);
+    }
+#endif
 }

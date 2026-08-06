@@ -10,6 +10,9 @@ using UnityEngine.Tilemaps;
 /// that contain a floor tile — so the map can be any non-rectangular shape (L-shapes,
 /// inlets, holes). You "paint the map" simply by painting floor tiles. With no tilemap
 /// assigned, the grid falls back to a full width × height rectangle.
+///
+/// OCCUPANCY: one unit per cell, enforced. Writes that would clobber another unit's
+/// record are logged loudly rather than applied silently.
 /// </summary>
 public class GridManager : MonoBehaviour
 {
@@ -36,6 +39,10 @@ public class GridManager : MonoBehaviour
     [Header("Optional")]
     [Tooltip("Tiles on this layer block movement (walls, etc). Leave empty to ignore.")]
     public LayerMask obstacleLayer;
+
+    [Header("Placement")]
+    [Tooltip("How far a mis-placed unit may be nudged, in cells, when looking for a free tile.")]
+    public int maxPlacementSearchRadius = 12;
 
     // What occupies each cell. null == empty.
     private Unit[,] occupants;
@@ -136,9 +143,12 @@ public class GridManager : MonoBehaviour
 
     public Unit GetUnitAt(Vector2Int cell)
     {
+        if (occupants == null) return null;
         if (!InBounds(cell)) return null;
         return occupants[cell.x, cell.y];
     }
+
+    public bool IsOccupied(Vector2Int cell) => GetUnitAt(cell) != null;
 
     public bool IsWalkable(Vector2Int cell)
     {
@@ -154,9 +164,31 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Record 'unit' as the occupant of 'cell'. Out-of-bounds writes are refused and
+    /// clobbering another unit's record is reported — neither should ever happen once
+    /// units place themselves through Unit.SnapToGrid().
+    /// </summary>
     public void SetUnit(Vector2Int cell, Unit unit)
     {
-        if (InBounds(cell)) occupants[cell.x, cell.y] = unit;
+        if (!InBounds(cell))
+        {
+            Debug.LogWarning(
+                $"[GridManager] Refused to register {DescribeUnit(unit)} at {cell}: " +
+                $"that cell is outside the playable map.", unit);
+            return;
+        }
+
+        Unit existing = occupants[cell.x, cell.y];
+        if (existing != null && existing != unit)
+        {
+            Debug.LogError(
+                $"[GridManager] Cell {cell} already holds {DescribeUnit(existing)}; " +
+                $"{DescribeUnit(unit)} is overwriting it. Two units share a tile — " +
+                $"check their positions in the scene.", unit);
+        }
+
+        occupants[cell.x, cell.y] = unit;
     }
 
     public void ClearCell(Vector2Int cell)
@@ -164,11 +196,117 @@ public class GridManager : MonoBehaviour
         if (InBounds(cell)) occupants[cell.x, cell.y] = null;
     }
 
+    /// <summary>
+    /// Clear a cell only if 'expected' is the unit currently recorded there. Prevents a
+    /// unit with a stale Cell value from wiping another unit's occupancy record.
+    /// </summary>
+    public void ClearCell(Vector2Int cell, Unit expected)
+    {
+        if (!InBounds(cell)) return;
+        if (occupants[cell.x, cell.y] == expected)
+            occupants[cell.x, cell.y] = null;
+    }
+
     /// <summary>Move occupancy record from one cell to another.</summary>
     public void MoveUnit(Vector2Int from, Vector2Int to, Unit unit)
     {
-        ClearCell(from);
+        ClearCell(from, unit);
         SetUnit(to, unit);
+    }
+
+    // ---- Placement help ----
+
+    /// <summary>
+    /// Find the closest cell to 'start' that is in-bounds and free.
+    ///
+    /// Search flood-fills outward through in-bounds cells, passing over occupied ones
+    /// (so a unit can be stepped around) but never leaving the painted map — the result
+    /// is therefore always in the same connected region as 'start'. If 'start' itself is
+    /// off-map, falls back to a distance scan over the playable cells.
+    ///
+    /// Returns false if nothing free is found.
+    /// </summary>
+    public bool TryFindNearestFreeCell(Vector2Int start, out Vector2Int result, int maxSearchRadius = -1)
+    {
+        if (maxSearchRadius < 0) maxSearchRadius = maxPlacementSearchRadius;
+
+        result = start;
+
+        if (IsWalkable(start)) return true;
+
+        // Off the map entirely -> BFS has nothing to walk along, so scan instead.
+        if (!InBounds(start))
+            return TryScanForClosestFreeCell(start, out result);
+
+        var visited = new HashSet<Vector2Int> { start };
+        var queue = new Queue<Vector2Int>();
+        var depth = new Dictionary<Vector2Int, int> { [start] = 0 };
+        queue.Enqueue(start);
+
+        Vector2Int[] dirs = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+
+        while (queue.Count > 0)
+        {
+            Vector2Int current = queue.Dequeue();
+            int d = depth[current];
+            if (d >= maxSearchRadius) continue;
+
+            foreach (var dir in dirs)
+            {
+                Vector2Int next = current + dir;
+                if (!visited.Add(next)) continue;
+                if (!InBounds(next)) continue;      // stay inside the painted map
+
+                if (IsWalkable(next))
+                {
+                    result = next;
+                    return true;
+                }
+
+                // Occupied or blocked: keep walking through it to reach cells beyond.
+                depth[next] = d + 1;
+                queue.Enqueue(next);
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>Brute-force nearest free cell by Manhattan distance. Fallback for off-map starts.</summary>
+    private bool TryScanForClosestFreeCell(Vector2Int start, out Vector2Int result)
+    {
+        result = start;
+        int bestDist = int.MaxValue;
+        bool found = false;
+
+        if (validCells != null)
+        {
+            foreach (var cell in validCells)
+            {
+                if (!IsWalkable(cell)) continue;
+                int d = Mathf.Abs(cell.x - start.x) + Mathf.Abs(cell.y - start.y);
+                if (d < bestDist) { bestDist = d; result = cell; found = true; }
+            }
+            return found;
+        }
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                var cell = new Vector2Int(x, y);
+                if (!IsWalkable(cell)) continue;
+                int d = Mathf.Abs(x - start.x) + Mathf.Abs(y - start.y);
+                if (d < bestDist) { bestDist = d; result = cell; found = true; }
+            }
+        }
+        return found;
+    }
+
+    private static string DescribeUnit(Unit u)
+    {
+        if (u == null) return "an obstacle";
+        return $"'{u.unitName}' ({u.name})";
     }
 
     // ---- Pathfinding helper: reachable cells via flood fill (BFS) ----
