@@ -309,7 +309,73 @@ public class GridManager : MonoBehaviour
         return $"'{u.unitName}' ({u.name})";
     }
 
-    // ---- Pathfinding helper: reachable cells via flood fill (BFS) ----
+    // ---- Pathfinding helpers: BFS distance fields ----
+
+    private static readonly Vector2Int[] Directions =
+    {
+        Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right
+    };
+
+    /// <summary>
+    /// True step count (4-directional) from 'start' to every cell it can reach, up to
+    /// 'maxSteps'. This is the honest cost on L-shaped or walled maps, where straight-line
+    /// distance under-reports badly or points straight into a wall.
+    ///
+    /// 'passThrough' units are treated as passable — pass a unit in when its own cell
+    /// shouldn't wall off the flood (the mover itself, or the target being pathed toward).
+    /// Everything else occupied or blocked stays impassable. The start cell is always
+    /// included at distance 0, even if something is standing on it.
+    /// </summary>
+    public Dictionary<Vector2Int, int> GetDistanceField(
+        Vector2Int start, int maxSteps, params Unit[] passThrough)
+    {
+        var dist = new Dictionary<Vector2Int, int>();
+        if (!InBounds(start)) return dist;
+
+        dist[start] = 0;
+        var queue = new Queue<Vector2Int>();
+        queue.Enqueue(start);
+
+        while (queue.Count > 0)
+        {
+            Vector2Int current = queue.Dequeue();
+            int d = dist[current];
+            if (d >= maxSteps) continue;
+
+            foreach (var dir in Directions)
+            {
+                Vector2Int next = current + dir;
+                if (dist.ContainsKey(next)) continue;   // already visited
+                if (!InBounds(next)) continue;
+                if (!IsPassable(next, passThrough)) continue;
+
+                dist[next] = d + 1;
+                queue.Enqueue(next);
+            }
+        }
+        return dist;
+    }
+
+    /// <summary>Uncapped distance field from 'start'.</summary>
+    public Dictionary<Vector2Int, int> GetDistanceField(Vector2Int start, params Unit[] passThrough)
+    {
+        return GetDistanceField(start, int.MaxValue, passThrough);
+    }
+
+    /// <summary>Walkable, or occupied by one of the units we're allowed to route through.</summary>
+    private bool IsPassable(Vector2Int cell, Unit[] passThrough)
+    {
+        if (IsWalkable(cell)) return true;
+        if (passThrough == null || passThrough.Length == 0) return false;
+
+        Unit occupant = GetUnitAt(cell);
+        if (occupant == null) return false;      // blocked by terrain, not a unit
+
+        foreach (var u in passThrough)
+            if (u != null && u == occupant) return true;
+
+        return false;
+    }
 
     /// <summary>
     /// Returns all cells reachable from 'start' within 'moveRange' steps (4-directional),
@@ -317,34 +383,9 @@ public class GridManager : MonoBehaviour
     /// </summary>
     public HashSet<Vector2Int> GetReachableCells(Vector2Int start, int moveRange)
     {
-        var reachable = new HashSet<Vector2Int>();
-        var dist = new Dictionary<Vector2Int, int> { [start] = 0 };
-        var queue = new Queue<Vector2Int>();
-        queue.Enqueue(start);
-
-        Vector2Int[] dirs =
-        {
-            Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right
-        };
-
-        while (queue.Count > 0)
-        {
-            Vector2Int current = queue.Dequeue();
-            int d = dist[current];
-            if (d >= moveRange) continue;
-
-            foreach (var dir in dirs)
-            {
-                Vector2Int next = current + dir;
-                if (dist.ContainsKey(next)) continue;   // already visited
-                if (!InBounds(next)) continue;
-                if (!IsWalkable(next)) continue;
-
-                dist[next] = d + 1;
-                reachable.Add(next);
-                queue.Enqueue(next);
-            }
-        }
+        var field = GetDistanceField(start, moveRange);
+        var reachable = new HashSet<Vector2Int>(field.Keys);
+        reachable.Remove(start);
         return reachable;
     }
 
