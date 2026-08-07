@@ -29,13 +29,24 @@ public class PlayerInteractions : MonoBehaviour
         if (!Input.GetKeyDown(interactKey))
             return;
 
+        DialogueManager dialogue = DialogueManager.Instance;
+
+        // A pending choice is modal: the interact key can neither advance past it nor
+        // dismiss it. Clicking one of the buttons is the only way out.
+        if (dialogue != null && dialogue.IsAwaitingChoice)
+        {
+            if (enableDebugLogs)
+                Debug.Log("[Interact] Awaiting a dialogue choice — interact key ignored.");
+            return;
+        }
+
         // If dialogue is currently open, advance it
-        if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen)
+        if (dialogue != null && dialogue.IsOpen)
         {
             if (enableDebugLogs)
                 Debug.Log("[Interact] Advancing dialogue");
 
-            DialogueManager.Instance.NextLine();
+            dialogue.NextLine();
             return;
         }
 
@@ -101,5 +112,4 @@ public class PlayerInteractions : MonoBehaviour
 
     public bool HasInteractable => current != null;
 }
-
 
