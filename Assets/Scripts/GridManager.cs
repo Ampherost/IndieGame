@@ -317,17 +317,24 @@ public class GridManager : MonoBehaviour
     };
 
     /// <summary>
-    /// True step count (4-directional) from 'start' to every cell it can reach, up to
-    /// 'maxSteps'. This is the honest cost on L-shaped or walled maps, where straight-line
-    /// distance under-reports badly or points straight into a wall.
+    /// The one BFS. Walks outward from 'start' up to 'maxSteps', recording the true
+    /// 4-directional step count to every cell it can reach.
     ///
     /// 'passThrough' units are treated as passable — pass a unit in when its own cell
     /// shouldn't wall off the flood (the mover itself, or the target being pathed toward).
     /// Everything else occupied or blocked stays impassable. The start cell is always
     /// included at distance 0, even if something is standing on it.
+    ///
+    /// 'cameFrom' collects predecessors when the caller wants to rebuild a route; pass
+    /// null when only distances are needed. 'goal' stops the search early once that cell
+    /// is dequeued.
     /// </summary>
-    public Dictionary<Vector2Int, int> GetDistanceField(
-        Vector2Int start, int maxSteps, params Unit[] passThrough)
+    private Dictionary<Vector2Int, int> Flood(
+        Vector2Int start,
+        int maxSteps,
+        Unit[] passThrough,
+        Dictionary<Vector2Int, Vector2Int> cameFrom = null,
+        Vector2Int? goal = null)
     {
         var dist = new Dictionary<Vector2Int, int>();
         if (!InBounds(start)) return dist;
@@ -339,6 +346,8 @@ public class GridManager : MonoBehaviour
         while (queue.Count > 0)
         {
             Vector2Int current = queue.Dequeue();
+            if (goal.HasValue && current == goal.Value) break;
+
             int d = dist[current];
             if (d >= maxSteps) continue;
 
@@ -350,16 +359,57 @@ public class GridManager : MonoBehaviour
                 if (!IsPassable(next, passThrough)) continue;
 
                 dist[next] = d + 1;
+                cameFrom?.Add(next, current);
                 queue.Enqueue(next);
             }
         }
         return dist;
     }
 
+    /// <summary>
+    /// True step count from 'start' to every cell it can reach, up to 'maxSteps'. This is
+    /// the honest cost on L-shaped or walled maps, where straight-line distance
+    /// under-reports badly or points straight into a wall.
+    /// </summary>
+    public Dictionary<Vector2Int, int> GetDistanceField(
+        Vector2Int start, int maxSteps, params Unit[] passThrough)
+    {
+        return Flood(start, maxSteps, passThrough);
+    }
+
     /// <summary>Uncapped distance field from 'start'.</summary>
     public Dictionary<Vector2Int, int> GetDistanceField(Vector2Int start, params Unit[] passThrough)
     {
-        return GetDistanceField(start, int.MaxValue, passThrough);
+        return Flood(start, int.MaxValue, passThrough);
+    }
+
+    /// <summary>
+    /// Shortest walkable route from 'start' to 'goal' as a list of cells to step onto,
+    /// excluding 'start' itself and no longer than 'maxSteps'.
+    ///
+    /// Returns null when no route exists within the step limit. Returns an EMPTY list
+    /// when start == goal — "you're already there" is success, not failure, and callers
+    /// must not confuse the two.
+    /// </summary>
+    public List<Vector2Int> GetPath(
+        Vector2Int start, Vector2Int goal, int maxSteps, params Unit[] passThrough)
+    {
+        var path = new List<Vector2Int>();
+        if (start == goal) return path;
+
+        var cameFrom = new Dictionary<Vector2Int, Vector2Int>();
+        var dist = Flood(start, maxSteps, passThrough, cameFrom, goal);
+
+        if (!dist.ContainsKey(goal)) return null;
+
+        Vector2Int node = goal;
+        while (node != start)
+        {
+            path.Add(node);
+            node = cameFrom[node];
+        }
+        path.Reverse();
+        return path;
     }
 
     /// <summary>Walkable, or occupied by one of the units we're allowed to route through.</summary>

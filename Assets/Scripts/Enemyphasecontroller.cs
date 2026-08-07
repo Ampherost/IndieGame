@@ -95,12 +95,10 @@ public class EnemyPhaseController : MonoBehaviour
 
         // Otherwise, close the distance.
         Vector2Int destination = FindBestApproachCell(enemy, target);
-        if (destination != enemy.Cell)
-        {
-            List<Vector2Int> path = FindPath(enemy.Cell, destination, enemy.moveRange);
-            if (path != null && path.Count > 0)
-                yield return StartCoroutine(enemy.MoveAlong(path));
-        }
+        List<Vector2Int> path = GridManager.Instance.GetPath(
+            enemy.Cell, destination, enemy.moveRange, enemy);
+        if (path != null && path.Count > 0)
+            yield return StartCoroutine(enemy.MoveAlong(path));
 
         // After moving, attack if a player is now in range (target may have moved
         // in a prior enemy's turn, so re-scan rather than assuming the same one).
@@ -253,46 +251,5 @@ public class EnemyPhaseController : MonoBehaviour
     private int ManhattanBetween(Vector2Int a, Vector2Int b)
     {
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
-    }
-
-    // ---- Pathfinding (same BFS as the player controller) ----
-
-    private List<Vector2Int> FindPath(Vector2Int start, Vector2Int goal, int maxSteps)
-    {
-        var cameFrom = new Dictionary<Vector2Int, Vector2Int>();
-        var dist = new Dictionary<Vector2Int, int> { [start] = 0 };
-        var queue = new Queue<Vector2Int>();
-        queue.Enqueue(start);
-
-        while (queue.Count > 0)
-        {
-            Vector2Int current = queue.Dequeue();
-            if (current == goal) break;
-            if (dist[current] >= maxSteps) continue;
-
-            foreach (var dir in Directions)
-            {
-                Vector2Int next = current + dir;
-                if (dist.ContainsKey(next)) continue;
-                if (!GridManager.Instance.InBounds(next)) continue;
-                if (!GridManager.Instance.IsWalkable(next)) continue;
-
-                dist[next] = dist[current] + 1;
-                cameFrom[next] = current;
-                queue.Enqueue(next);
-            }
-        }
-
-        if (!cameFrom.ContainsKey(goal)) return null;
-
-        var path = new List<Vector2Int>();
-        Vector2Int node = goal;
-        while (node != start)
-        {
-            path.Add(node);
-            node = cameFrom[node];
-        }
-        path.Reverse();
-        return path;
     }
 }

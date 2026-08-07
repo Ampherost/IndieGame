@@ -196,7 +196,9 @@ public class CombatController : MonoBehaviour
 
     private IEnumerator MoveSelectedTo(Vector2Int dest)
     {
-        List<Vector2Int> path = FindPath(selectedUnit.Cell, dest, selectedUnit.moveRange);
+        // null == no route; an empty list == already standing there, which is fine.
+        List<Vector2Int> path = GridManager.Instance.GetPath(
+            selectedUnit.Cell, dest, selectedUnit.moveRange, selectedUnit);
         if (path == null) { Deselect(); yield break; }
 
         Unit acting = selectedUnit;
@@ -305,49 +307,6 @@ public class CombatController : MonoBehaviour
         reachable.Clear();
         targetsInRange.Clear();
         ClearHighlights();
-    }
-
-    // ---- BFS pathfinding ----
-
-    private List<Vector2Int> FindPath(Vector2Int start, Vector2Int goal, int maxSteps)
-    {
-        var cameFrom = new Dictionary<Vector2Int, Vector2Int>();
-        var dist = new Dictionary<Vector2Int, int> { [start] = 0 };
-        var queue = new Queue<Vector2Int>();
-        queue.Enqueue(start);
-
-        Vector2Int[] dirs = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
-
-        while (queue.Count > 0)
-        {
-            Vector2Int current = queue.Dequeue();
-            if (current == goal) break;
-            if (dist[current] >= maxSteps) continue;
-
-            foreach (var dir in dirs)
-            {
-                Vector2Int next = current + dir;
-                if (dist.ContainsKey(next)) continue;
-                if (!GridManager.Instance.InBounds(next)) continue;
-                if (!GridManager.Instance.IsWalkable(next)) continue;
-
-                dist[next] = dist[current] + 1;
-                cameFrom[next] = current;
-                queue.Enqueue(next);
-            }
-        }
-
-        if (!cameFrom.ContainsKey(goal)) return null;
-
-        var path = new List<Vector2Int>();
-        Vector2Int node = goal;
-        while (node != start)
-        {
-            path.Add(node);
-            node = cameFrom[node];
-        }
-        path.Reverse();
-        return path;
     }
 
     // ---- Highlight rendering ----
