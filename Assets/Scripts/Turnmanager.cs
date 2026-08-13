@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,13 +10,19 @@ using UnityEngine;
 ///
 /// Phase advancement is iterative, not recursive: a phase where nobody can act
 /// is skipped inside a loop, so an empty board can never blow the stack.
+///
+/// STARTUP ORDER: the scene sweep happens in Awake, because every Awake runs before
+/// any Start — at that point no unit has had a chance to deactivate itself, so the
+/// snapshot can neither miss a unit nor capture one that is about to remove itself.
+/// The first phase is then deferred by one frame so that every Unit.Start() ->
+/// SnapToGrid() has resolved before we decide who can act.
 /// </summary>
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance { get; private set; }
 
     [Header("Registration")]
-    [Tooltip("If true, finds all Units in the scene on Start. Otherwise register them manually.")]
+    [Tooltip("If true, finds all Units in the scene during Awake. Otherwise register them manually.")]
     public bool autoRegisterUnitsOnStart = true;
 
     [Header("End Conditions")]
@@ -25,6 +32,13 @@ public class TurnManager : MonoBehaviour
 
     public Team CurrentPhase { get; private set; } = Team.Player;
     public int RoundNumber { get; private set; } = 1;
+
+    /// <summary>
+    /// False until the first phase has actually begun. Roster changes before this point
+    /// (units failing to place themselves) must not try to advance or end a phase.
+    /// Input controllers should also ignore clicks while this is false.
+    /// </summary>
+    public bool CombatStarted { get; private set; }
 
     /// <summary>True once the battle has resolved. No further phases will begin.</summary>
     public bool CombatOver { get; private set; }
@@ -48,32 +62,67 @@ public class TurnManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-    }
 
-    private void Start()
-    {
+        // Swept here rather than in Start. Units register themselves in OnEnable too, but
+        // that can run before this Awake if script order puts them first, so the sweep is
+        // the backstop that guarantees a complete roster either way.
         if (autoRegisterUnitsOnStart)
         {
             allUnits.Clear();
             allUnits.AddRange(FindObjectsByType<Unit>(FindObjectsSortMode.None));
         }
+    }
+
+    private IEnumerator Start()
+    {
+        // Let every Unit.Start() -> SnapToGrid() run first. A unit that cannot be placed
+        // deactivates itself during its own Start; waiting one frame means the roster is
+        // settled before we announce a phase, instead of announcing one and then losing
+        // the last unit that owed us an action.
+        yield return null;
+
+        CombatStarted = true;
         BeginPhase(Team.Player);
     }
 
     public void RegisterUnit(Unit u)
     {
+        if (u == null) return;
         if (!allUnits.Contains(u)) allUnits.Add(u);
     }
 
+    /// <summary>
+    /// Remove a unit from the roster. Because the acting team may just have lost the last
+    /// unit that still owed us an action, this re-evaluates the phase rather than leaving
+    /// the loop waiting on a unit that no longer exists.
+    /// </summary>
     public void UnregisterUnit(Unit u)
     {
-        allUnits.Remove(u);
+        if (u == null || !allUnits.Remove(u)) return;
+        ReevaluatePhase();
+    }
+
+    /// <summary>
+    /// Re-check the current phase after something changed who can act — a unit
+    /// unregistered, died, or was lifted off the board by rescue / capture / transport.
+    /// Safe to call at any time; does nothing before combat starts or after it ends.
+    /// </summary>
+    public void ReevaluatePhase()
+    {
+        if (!CombatStarted || CombatOver) return;
+        if (CheckCombatEnd()) return;
+        if (AllUnitsActed(CurrentPhase)) EndPhase();
     }
 
     /// <summary>Call after a unit finishes its action (moved + acted, or waited).</summary>
     public void NotifyUnitActed(Unit u)
     {
         if (CombatOver || u == null) return;
+
+        // A coroutine that was already in flight when the phase flipped can still report
+        // in. Dropping the stale report keeps it from marking a unit acted on the wrong
+        // phase and prematurely ending it.
+        if (u.team != CurrentPhase) return;
 
         u.HasActed = true;
 
@@ -96,10 +145,21 @@ public class TurnManager : MonoBehaviour
                 yield return u;
     }
 
+    /// <summary>
+    /// Whether this unit is still owed an action on 'team'. Note the IsOnGrid test: an
+    /// alive, registered unit that holds no cell (rescued, captured, in transport, or
+    /// never successfully placed) cannot be selected, so waiting on it would hang the
+    /// phase forever.
+    /// </summary>
+    private static bool CanStillAct(Unit u, Team team)
+    {
+        return u != null && u.IsAlive && u.IsOnGrid && u.team == team && !u.HasActed;
+    }
+
     private bool AllUnitsActed(Team team)
     {
         foreach (var u in allUnits)
-            if (u != null && u.IsAlive && u.team == team && !u.HasActed)
+            if (CanStillAct(u, team))
                 return false;
         return true;
     }

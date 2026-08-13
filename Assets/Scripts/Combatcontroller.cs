@@ -62,6 +62,11 @@ public class CombatController : MonoBehaviour
             return;
         }
 
+        // TurnManager defers the first phase by a frame so units can finish placing
+        // themselves. Until then CurrentPhase is only its default value, so a click in
+        // that window would select a unit for a phase that hasn't started.
+        if (!TurnManager.Instance.CombatStarted) return;
+
         if (inputLocked) return;
         if (TurnManager.Instance.CurrentPhase != Team.Player) return;
 
@@ -296,6 +301,9 @@ public class CombatController : MonoBehaviour
         selectedUnit = null;
         state = State.Idle;
 
+        // If the attacker died to a counter, it has already unregistered and TurnManager
+        // has re-evaluated the phase. NotifyUnitActed drops reports for a team that is no
+        // longer the current phase, so this stays safe either way.
         if (acting != null)
             TurnManager.Instance.NotifyUnitActed(acting);
     }
