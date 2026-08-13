@@ -249,6 +249,21 @@ public class TurnManager : MonoBehaviour
         resolvingPhaseChange = false;   // in case BeginPhase returned early
     }
 
+    /// <summary>
+    /// Cut a phase short: mark every unit on 'team' as having acted, then hand over.
+    /// Backs the End Turn button, so the player isn't forced to move every unit.
+    /// </summary>
+    public void EndPhaseEarly(Team team)
+    {
+        if (CombatOver || CurrentPhase != team) return;
+
+        foreach (var u in allUnits)
+            if (u != null && u.IsAlive && u.team == team)
+                u.HasActed = true;
+
+        EndPhase();
+    }
+
     // ---- Win / loss ----
 
     public bool AnyAlive(Team team)
