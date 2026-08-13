@@ -16,10 +16,9 @@ using UnityEngine;
 /// One exception, deliberately: attack RANGE is still Manhattan, because that's what
 /// Unit.DistanceTo / Unit.CanAttack use. Attacks reach over walls; movement does not.
 ///
-/// SUBSCRIPTION: TurnManager sets its singleton in Awake and does not announce the first
-/// phase until a frame after Start, so subscribing in Start is always in time. The old
-/// wait-a-frame coroutine existed only to dodge an ordering assumption that no longer
-/// holds.
+/// Subscription is direct rather than deferred: TurnManager sets Instance in Awake and
+/// doesn't announce the first phase until the frame after Start, so by the time this
+/// component's Start runs there is nothing left to wait for.
 /// </summary>
 public class EnemyPhaseController : MonoBehaviour
 {
@@ -39,7 +38,6 @@ public class EnemyPhaseController : MonoBehaviour
         Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right
     };
 
-    // Start() runs once; OnEnable can run again after a manual disable/enable cycle.
     private bool started;
 
     private void Start()
@@ -50,12 +48,15 @@ public class EnemyPhaseController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (started) Subscribe();   // re-enable; the first subscribe happens in Start
+        // Only re-subscribe on a genuine re-enable. On the first enable, Start hasn't run
+        // and other components' Awakes may not have either.
+        if (started) Subscribe();
     }
 
     private void OnDisable()
     {
-        Unsubscribe();
+        if (TurnManager.Instance != null)
+            TurnManager.Instance.OnPhaseStart -= HandlePhaseStart;
     }
 
     private void Subscribe()
@@ -67,15 +68,9 @@ public class EnemyPhaseController : MonoBehaviour
             return;
         }
 
-        // Remove first so a double subscribe can't queue the phase twice.
+        // Remove first so a re-enable can't double-subscribe and run the phase twice.
         TurnManager.Instance.OnPhaseStart -= HandlePhaseStart;
         TurnManager.Instance.OnPhaseStart += HandlePhaseStart;
-    }
-
-    private void Unsubscribe()
-    {
-        if (TurnManager.Instance != null)
-            TurnManager.Instance.OnPhaseStart -= HandlePhaseStart;
     }
 
     private void HandlePhaseStart(Team team)
@@ -93,8 +88,10 @@ public class EnemyPhaseController : MonoBehaviour
             // A player unit may have fallen mid-phase, ending the battle.
             if (TurnManager.Instance.CombatOver) yield break;
 
-            // Skip anything that died, despawned, or was lifted off the board earlier in
-            // this same phase. TurnManager no longer waits on off-grid units either.
+            // The phase can also end early — an objective firing, or the roster shrinking.
+            // NotifyUnitActed ignores off-phase reports, but there's no point continuing.
+            if (TurnManager.Instance.CurrentPhase != Team.Enemy) yield break;
+
             if (enemy == null || !enemy.IsAlive || !enemy.IsOnGrid) continue;
 
             yield return StartCoroutine(TakeEnemyTurn(enemy));
@@ -163,7 +160,7 @@ public class EnemyPhaseController : MonoBehaviour
 
         foreach (var player in TurnManager.Instance.UnitsOnTeam(Team.Player))
         {
-            if (!player.IsOnGrid) continue;   // rescued / in transport: not a target
+            if (!player.IsOnGrid) continue;   // rescued / captured units aren't targets
 
             int d = PathDistanceToUnit(field, player);
             if (d == int.MaxValue)

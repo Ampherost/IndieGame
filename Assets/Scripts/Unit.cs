@@ -10,10 +10,10 @@ public enum Team { Player, Enemy }
 /// A unit holds exactly one cell at a time. PlaceAt() releases the previous cell before
 /// claiming a new one, so teleports / reinforcements / rescue can't leak occupancy.
 ///
-/// REGISTRATION is push-based: the unit adds itself to the TurnManager roster in OnEnable
-/// and removes itself in OnDisable. That covers runtime spawns and despawns, and means a
-/// unit that deactivates itself is off the roster the instant it does so. TurnManager's
-/// Awake sweep is the backstop for units whose OnEnable ran before it existed.
+/// REGISTRATION is pushed, not pulled: OnEnable registers with the TurnManager and
+/// OnDisable unregisters, so spawned reinforcements and despawned units need no special
+/// handling. Battle deaths are the one exception — a casualty stays on the roster so
+/// objectives, after-action reports and revive mechanics have something to read.
 /// </summary>
 public class Unit : MonoBehaviour
 {
@@ -45,6 +45,10 @@ public class Unit : MonoBehaviour
     /// <summary>True while this unit holds a cell on the grid.</summary>
     public bool IsOnGrid { get; private set; }
 
+    // Died in battle, as opposed to being despawned, retreating, or failing to place.
+    // Keeps OnDisable from evicting the casualty from the roster.
+    private bool countedAsDead;
+
     private void OnEnable()
     {
         if (TurnManager.Instance != null)
@@ -53,9 +57,10 @@ public class Unit : MonoBehaviour
 
     private void OnDisable()
     {
-        // Covers death, unplaceable units deactivating themselves, and manual despawns.
-        // TurnManager re-evaluates the phase from here, so losing the last unit that
-        // still owed an action can't hang the turn loop.
+        // Casualties stay registered as a record of the battle. TurnManager filters on
+        // IsAlive, so a corpse on the roster can never stall a phase.
+        if (countedAsDead) return;
+
         if (TurnManager.Instance != null)
             TurnManager.Instance.UnregisterUnit(this);
     }
@@ -75,21 +80,19 @@ public class Unit : MonoBehaviour
     /// there first is not something to rely on) — the unit is nudged to the nearest free
     /// cell and a warning names both tiles. A unit that cannot be placed at all is
     /// deactivated, because an unplaceable-but-alive unit can never be selected and would
-    /// stall the player phase forever.
-    ///
-    /// A missing GridManager is treated the same way, and for the same reason: merely
-    /// disabling the component would leave an active, registered, alive unit that holds
-    /// no cell and can never be clicked.
+    /// stall the player phase forever. Deactivation unregisters it via OnDisable.
     /// </summary>
     public void SnapToGrid()
     {
         var grid = GridManager.Instance;
         if (grid == null)
         {
+            // Disabling only the component would leave the GameObject active, registered
+            // and alive but never on the grid — the same permanent stall, harder to spot.
             Debug.LogError(
                 $"[Unit] '{unitName}' found no GridManager in the scene. Deactivating it " +
                 $"so it can't stall the turn loop.", this);
-            gameObject.SetActive(false);   // OnDisable unregisters it
+            gameObject.SetActive(false);
             return;
         }
 
@@ -113,7 +116,7 @@ public class Unit : MonoBehaviour
             $"cell was found. Deactivating it so it doesn't stall the turn loop.", this);
 
         RemoveFromGrid();
-        gameObject.SetActive(false);       // OnDisable unregisters it
+        gameObject.SetActive(false);   // OnDisable unregisters
     }
 
     private string DescribeBlockage(GridManager grid, Vector2Int cell)
@@ -198,9 +201,8 @@ public class Unit : MonoBehaviour
     /// transport pickup. The tile is freed; the unit stays alive and registered, so put
     /// it back with PlaceAt / TryWarpTo when it's dropped off.
     ///
-    /// TurnManager stops waiting on off-grid units, so the phase is re-checked here: if
-    /// this unit was the last one on its team still owed an action, the phase ends now
-    /// instead of waiting on a unit that has no cell to act from.
+    /// Safe mid-phase: TurnManager treats off-grid units as unable to act, so the phase
+    /// won't sit waiting on a unit that isn't on the board.
     /// </summary>
     public void RemoveFromGrid()
     {
@@ -208,9 +210,6 @@ public class Unit : MonoBehaviour
         if (GridManager.Instance != null)
             GridManager.Instance.ClearCell(Cell, this);
         IsOnGrid = false;
-
-        if (TurnManager.Instance != null)
-            TurnManager.Instance.ReevaluatePhase();
     }
 
     /// <summary>Smoothly move along a path (list of adjacent cells), updating occupancy at the end.</summary>
@@ -240,6 +239,8 @@ public class Unit : MonoBehaviour
         IsMoving = false;
     }
 
+    // ---- Damage and death ----
+
     /// <summary>Standard FE-ish damage: attacker.attack - target.defense, min 1.</summary>
     public void TakeDamage(int rawAttack)
     {
@@ -250,16 +251,45 @@ public class Unit : MonoBehaviour
         if (!IsAlive) Die();
     }
 
+    /// <summary>
+    /// Kill the unit outright, bypassing damage calculation — map hazards, instant-death
+    /// skills, scripted deaths.
+    /// </summary>
+    public void Kill()
+    {
+        if (!IsAlive) return;
+        currentHP = 0;
+        Die();
+    }
+
+    /// <summary>
+    /// Put a fallen unit back in play. The roster entry was never removed, so this only
+    /// restores HP, clears the casualty flag and finds it a tile.
+    /// </summary>
+    public bool Revive(Vector2Int cell, int hp = -1)
+    {
+        currentHP = hp > 0 ? Mathf.Min(hp, maxHP) : maxHP;
+        countedAsDead = false;
+        HasActed = true;                 // no free action on the turn it comes back
+        gameObject.SetActive(true);      // OnEnable re-registers (no-op if still listed)
+        return TryWarpTo(cell);
+    }
+
     private void Die()
     {
         Debug.Log($"{unitName} was defeated.");
 
+        // Set before SetActive so OnDisable leaves the casualty on the roster.
+        countedAsDead = true;
+
         RemoveFromGrid();
-        gameObject.SetActive(false);   // OnDisable unregisters it
+        gameObject.SetActive(false);
 
         if (TurnManager.Instance != null)
             TurnManager.Instance.NotifyUnitDied(this);
     }
+
+    // ---- Combat ----
 
     /// <summary>Manhattan distance to another cell — used for attack range checks.</summary>
     public int DistanceTo(Vector2Int other)
