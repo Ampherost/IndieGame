@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Player-side combat input, turn-aware with attack resolution.
@@ -9,9 +10,13 @@ using UnityEngine;
 ///   1. Click a player unit (player phase only) -> movement range highlights (blue).
 ///   2. Click a reachable tile -> unit slides there.
 ///   3. If enemies are now in attack range, they highlight (red) and we wait for a target.
+///        - Hover a highlighted enemy -> battle forecast appears.
 ///        - Click a highlighted enemy -> attack resolves -> unit's turn ends.
 ///        - Right-click / click elsewhere -> unit waits -> turn ends.
 ///   4. If no enemies are in range after moving, the turn ends automatically.
+///
+/// Hovering anything on the board fills the unit info panel, in any phase, so the player
+/// can read enemy stats while the AI moves.
 ///
 /// Once TurnManager reports CombatOver, all input stops and the board is cleared.
 /// </summary>
@@ -33,6 +38,13 @@ public class CombatController : MonoBehaviour
              "If left empty, it's found automatically on the combat camera.")]
     public CombatCameraController cameraController;
 
+    [Header("UI")]
+    [Tooltip("Stat readout for the hovered (or selected) unit.")]
+    public UnitInfoPanel unitInfoPanel;
+
+    [Tooltip("Damage preview shown while hovering a valid attack target.")]
+    public BattleForecastPanel forecastPanel;
+
     private enum State { Idle, UnitSelected, AwaitingTarget }
     private State state = State.Idle;
 
@@ -43,6 +55,15 @@ public class CombatController : MonoBehaviour
 
     private bool inputLocked;         // true while a unit is animating / resolving
     private bool combatEndHandled;    // ensures the end-of-battle cleanup runs once
+
+    // Hover tracking.
+    private Vector2Int hoveredCell;
+    private Unit hoveredUnit;
+    private bool hoverInitialised;
+
+    // Lets us notice the phase flipping under us (the End Turn button, or the enemy
+    // phase starting) and drop any selection that's now stale.
+    private Team lastSeenPhase = Team.Player;
 
     private void Awake()
     {
@@ -62,13 +83,21 @@ public class CombatController : MonoBehaviour
             return;
         }
 
-        // TurnManager defers the first phase by a frame so units can finish placing
-        // themselves. Until then CurrentPhase is only its default value, so a click in
-        // that window would select a unit for a phase that hasn't started.
-        if (!TurnManager.Instance.CombatStarted) return;
+        // The phase can end without us: the player pressing End Turn, or the last unit
+        // acting. Either way any half-finished selection has to go.
+        if (TurnManager.Instance.CurrentPhase != lastSeenPhase)
+        {
+            lastSeenPhase = TurnManager.Instance.CurrentPhase;
+            Deselect();
+        }
+
+        UpdateHover();
 
         if (inputLocked) return;
         if (TurnManager.Instance.CurrentPhase != Team.Player) return;
+
+        // Don't let a click on the End Turn button also land on the board behind it.
+        if (IsPointerOverUI()) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -81,6 +110,11 @@ public class CombatController : MonoBehaviour
             HandleRightClick();
     }
 
+    private static bool IsPointerOverUI()
+    {
+        return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+    }
+
     /// <summary>
     /// Runs once when TurnManager reports the battle is over: drop any selection,
     /// clear leftover highlights, and report the result recorded by TurnManager.
@@ -91,6 +125,9 @@ public class CombatController : MonoBehaviour
         inputLocked = true;
         Deselect();
 
+        if (unitInfoPanel != null) unitInfoPanel.Hide();
+        if (forecastPanel != null) forecastPanel.Hide();
+
         Team? winner = TurnManager.Instance.Winner;
         if (winner == Team.Player)
             Debug.Log("Victory! All enemies defeated.");
@@ -98,6 +135,59 @@ public class CombatController : MonoBehaviour
             Debug.Log("Defeat! All player units lost.");
         else
             Debug.Log("Draw — no units remain on either side.");
+    }
+
+    // ---- Hover ----
+
+    /// <summary>
+    /// Track which cell the mouse is over and refresh the panels when it changes.
+    /// Only recomputes on change, so this costs nothing while the mouse sits still.
+    /// </summary>
+    private void UpdateHover()
+    {
+        if (combatCamera == null || GridManager.Instance == null) return;
+
+        if (IsPointerOverUI())
+        {
+            // Pointer left the board for the HUD; keep whatever was last shown rather
+            // than flickering the panel off and on as the mouse crosses it.
+            return;
+        }
+
+        Vector3 world = combatCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2Int cell = GridManager.Instance.WorldToCell(world);
+        Unit under = GridManager.Instance.GetUnitAt(cell);
+
+        if (hoverInitialised && cell == hoveredCell && under == hoveredUnit) return;
+
+        hoverInitialised = true;
+        hoveredCell = cell;
+        hoveredUnit = under;
+        RefreshHoverUI();
+    }
+
+    /// <summary>
+    /// Repaint the info and forecast panels. Called when the hover moves and after
+    /// anything that changes the selection or the target list.
+    /// </summary>
+    private void RefreshHoverUI()
+    {
+        // Info panel follows the mouse, falling back to the selected unit when the
+        // pointer is over empty ground.
+        if (unitInfoPanel != null)
+        {
+            Unit toShow = hoveredUnit != null ? hoveredUnit : selectedUnit;
+            if (toShow != null) unitInfoPanel.Show(toShow);
+            else unitInfoPanel.Hide();
+        }
+
+        if (forecastPanel == null) return;
+
+        // Forecast only while hovering an enemy this unit could actually strike.
+        if (selectedUnit != null && hoveredUnit != null && targetsInRange.Contains(hoveredUnit))
+            forecastPanel.Show(selectedUnit.PreviewAttack(hoveredUnit));
+        else
+            forecastPanel.Hide();
     }
 
     private void HandleLeftClick(Vector2Int cell)
@@ -189,6 +279,8 @@ public class CombatController : MonoBehaviour
         // Attach the camera to the selected unit so it follows this one.
         if (cameraController != null)
             cameraController.FocusOn(unit);
+
+        RefreshHoverUI();
     }
 
     private void ShowStayHighlight(Vector2Int cell)
@@ -238,6 +330,7 @@ public class CombatController : MonoBehaviour
         {
             state = State.AwaitingTarget;
             ShowAttackHighlights(targetsInRange);
+            RefreshHoverUI();
         }
         else
         {
@@ -273,6 +366,7 @@ public class CombatController : MonoBehaviour
     {
         inputLocked = true;
         ClearHighlights();
+        if (forecastPanel != null) forecastPanel.Hide();
 
         string log = attacker.Attack(target);
         Debug.Log(log);
@@ -301,9 +395,8 @@ public class CombatController : MonoBehaviour
         selectedUnit = null;
         state = State.Idle;
 
-        // If the attacker died to a counter, it has already unregistered and TurnManager
-        // has re-evaluated the phase. NotifyUnitActed drops reports for a team that is no
-        // longer the current phase, so this stays safe either way.
+        RefreshHoverUI();
+
         if (acting != null)
             TurnManager.Instance.NotifyUnitActed(acting);
     }
@@ -315,6 +408,7 @@ public class CombatController : MonoBehaviour
         reachable.Clear();
         targetsInRange.Clear();
         ClearHighlights();
+        RefreshHoverUI();
     }
 
     // ---- Highlight rendering ----

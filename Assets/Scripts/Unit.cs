@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,11 +10,6 @@ public enum Team { Player, Enemy }
 ///
 /// A unit holds exactly one cell at a time. PlaceAt() releases the previous cell before
 /// claiming a new one, so teleports / reinforcements / rescue can't leak occupancy.
-///
-/// REGISTRATION is pushed, not pulled: OnEnable registers with the TurnManager and
-/// OnDisable unregisters, so spawned reinforcements and despawned units need no special
-/// handling. Battle deaths are the one exception — a casualty stays on the roster so
-/// objectives, after-action reports and revive mechanics have something to read.
 /// </summary>
 public class Unit : MonoBehaviour
 {
@@ -33,6 +29,13 @@ public class Unit : MonoBehaviour
     [Tooltip("How fast the unit slides between tiles, in cells/sec.")]
     public float moveSpeed = 6f;
 
+    // ---- UI hooks ----
+    // Fired whenever currentHP changes, so health bars and info panels can redraw
+    // without polling every frame.
+    public event Action<Unit> OnHPChanged;
+    // Fired once, immediately before the unit is deactivated.
+    public event Action<Unit> OnDied;
+
     // Grid position (source of truth for logic; transform follows it).
     public Vector2Int Cell { get; private set; }
 
@@ -45,25 +48,8 @@ public class Unit : MonoBehaviour
     /// <summary>True while this unit holds a cell on the grid.</summary>
     public bool IsOnGrid { get; private set; }
 
-    // Died in battle, as opposed to being despawned, retreating, or failing to place.
-    // Keeps OnDisable from evicting the casualty from the roster.
-    private bool countedAsDead;
-
-    private void OnEnable()
-    {
-        if (TurnManager.Instance != null)
-            TurnManager.Instance.RegisterUnit(this);
-    }
-
-    private void OnDisable()
-    {
-        // Casualties stay registered as a record of the battle. TurnManager filters on
-        // IsAlive, so a corpse on the roster can never stall a phase.
-        if (countedAsDead) return;
-
-        if (TurnManager.Instance != null)
-            TurnManager.Instance.UnregisterUnit(this);
-    }
+    /// <summary>0..1 health fraction, safe against a zero/negative maxHP.</summary>
+    public float HPFraction => maxHP <= 0 ? 0f : Mathf.Clamp01((float)currentHP / maxHP);
 
     private void Start()
     {
@@ -79,20 +65,16 @@ public class Unit : MonoBehaviour
     /// another unit (Start() order across GameObjects is arbitrary, so which unit gets
     /// there first is not something to rely on) — the unit is nudged to the nearest free
     /// cell and a warning names both tiles. A unit that cannot be placed at all is
-    /// deactivated, because an unplaceable-but-alive unit can never be selected and would
-    /// stall the player phase forever. Deactivation unregisters it via OnDisable.
+    /// deactivated and unregistered, because an unplaceable-but-alive unit can never be
+    /// selected and would stall the player phase forever.
     /// </summary>
     public void SnapToGrid()
     {
         var grid = GridManager.Instance;
         if (grid == null)
         {
-            // Disabling only the component would leave the GameObject active, registered
-            // and alive but never on the grid — the same permanent stall, harder to spot.
-            Debug.LogError(
-                $"[Unit] '{unitName}' found no GridManager in the scene. Deactivating it " +
-                $"so it can't stall the turn loop.", this);
-            gameObject.SetActive(false);
+            Debug.LogError($"[Unit] '{unitName}' found no GridManager in the scene.", this);
+            enabled = false;
             return;
         }
 
@@ -116,7 +98,8 @@ public class Unit : MonoBehaviour
             $"cell was found. Deactivating it so it doesn't stall the turn loop.", this);
 
         RemoveFromGrid();
-        gameObject.SetActive(false);   // OnDisable unregisters
+        if (TurnManager.Instance != null) TurnManager.Instance.UnregisterUnit(this);
+        gameObject.SetActive(false);
     }
 
     private string DescribeBlockage(GridManager grid, Vector2Int cell)
@@ -200,9 +183,6 @@ public class Unit : MonoBehaviour
     /// Take the unit off the board without killing it — rescue, capture, retreat, or a
     /// transport pickup. The tile is freed; the unit stays alive and registered, so put
     /// it back with PlaceAt / TryWarpTo when it's dropped off.
-    ///
-    /// Safe mid-phase: TurnManager treats off-grid units as unable to act, so the phase
-    /// won't sit waiting on a unit that isn't on the board.
     /// </summary>
     public void RemoveFromGrid()
     {
@@ -239,48 +219,34 @@ public class Unit : MonoBehaviour
         IsMoving = false;
     }
 
-    // ---- Damage and death ----
+    // ---- Damage ----
+
+    /// <summary>
+    /// The one damage formula. Both the forecast and the real hit call this, so they
+    /// cannot drift apart — change the rules here and the preview follows automatically.
+    /// </summary>
+    public static int ComputeDamage(int rawAttack, int defense)
+    {
+        return Mathf.Max(1, rawAttack - defense);
+    }
 
     /// <summary>Standard FE-ish damage: attacker.attack - target.defense, min 1.</summary>
     public void TakeDamage(int rawAttack)
     {
-        int dmg = Mathf.Max(1, rawAttack - defense);
+        int dmg = ComputeDamage(rawAttack, defense);
         currentHP = Mathf.Max(0, currentHP - dmg);
         Debug.Log($"{unitName} took {dmg} damage ({currentHP}/{maxHP} HP left)");
 
+        OnHPChanged?.Invoke(this);
+
         if (!IsAlive) Die();
-    }
-
-    /// <summary>
-    /// Kill the unit outright, bypassing damage calculation — map hazards, instant-death
-    /// skills, scripted deaths.
-    /// </summary>
-    public void Kill()
-    {
-        if (!IsAlive) return;
-        currentHP = 0;
-        Die();
-    }
-
-    /// <summary>
-    /// Put a fallen unit back in play. The roster entry was never removed, so this only
-    /// restores HP, clears the casualty flag and finds it a tile.
-    /// </summary>
-    public bool Revive(Vector2Int cell, int hp = -1)
-    {
-        currentHP = hp > 0 ? Mathf.Min(hp, maxHP) : maxHP;
-        countedAsDead = false;
-        HasActed = true;                 // no free action on the turn it comes back
-        gameObject.SetActive(true);      // OnEnable re-registers (no-op if still listed)
-        return TryWarpTo(cell);
     }
 
     private void Die()
     {
         Debug.Log($"{unitName} was defeated.");
 
-        // Set before SetActive so OnDisable leaves the casualty on the roster.
-        countedAsDead = true;
+        OnDied?.Invoke(this);
 
         RemoveFromGrid();
         gameObject.SetActive(false);
@@ -289,7 +255,7 @@ public class Unit : MonoBehaviour
             TurnManager.Instance.NotifyUnitDied(this);
     }
 
-    // ---- Combat ----
+    // ---- Range ----
 
     /// <summary>Manhattan distance to another cell — used for attack range checks.</summary>
     public int DistanceTo(Vector2Int other)
@@ -300,35 +266,105 @@ public class Unit : MonoBehaviour
     /// <summary>True if 'target' is within this unit's attack range from its current cell.</summary>
     public bool CanAttack(Unit target)
     {
-        if (target == null || !target.IsAlive) return false;
+        return CanAttackFrom(Cell, target, target != null ? target.Cell : Vector2Int.zero);
+    }
+
+    /// <summary>
+    /// Range check with both cells supplied, so a forecast can ask "could I hit that from
+    /// over there?" without moving anyone. Everything except the two cells is read from
+    /// live state, so a dead or off-board unit is still untouchable.
+    /// </summary>
+    public bool CanAttackFrom(Vector2Int myCell, Unit target, Vector2Int targetCell)
+    {
+        if (target == null || !target.IsAlive || !IsAlive) return false;
         if (!IsOnGrid || !target.IsOnGrid) return false;     // off-board units are untouchable
         if (target.team == team) return false;               // no friendly fire
-        return DistanceTo(target.Cell) <= attackRange;
+
+        int d = Mathf.Abs(myCell.x - targetCell.x) + Mathf.Abs(myCell.y - targetCell.y);
+        return d <= attackRange;
+    }
+
+    // ---- Attacking ----
+
+    /// <summary>Forecast an attack from where this unit is standing right now.</summary>
+    public AttackForecast PreviewAttack(Unit target)
+    {
+        return PreviewAttack(target, Cell);
+    }
+
+    /// <summary>
+    /// Work out exactly what an attack would do, changing nothing. Pass 'fromCell' to
+    /// forecast from a tile the unit hasn't moved to yet — damage doesn't depend on
+    /// position, but whether the target can counter does.
+    ///
+    /// isValid is false when the attack isn't legal; the HP fields still hold current
+    /// values, so a panel can render a greyed-out row without special-casing.
+    /// </summary>
+    public AttackForecast PreviewAttack(Unit target, Vector2Int fromCell)
+    {
+        var f = new AttackForecast
+        {
+            attacker = this,
+            target = target,
+            isValid = false,
+            attackerHPBefore = currentHP,
+            attackerHPAfter = currentHP,
+        };
+
+        if (target == null) return f;
+
+        f.targetHPBefore = target.currentHP;
+        f.targetHPAfter = target.currentHP;
+
+        if (!CanAttackFrom(fromCell, target, target.Cell)) return f;
+
+        f.isValid = true;
+        f.damage = ComputeDamage(attack, target.defense);
+        f.targetHPAfter = Mathf.Max(0, target.currentHP - f.damage);
+        f.targetDies = f.targetHPAfter <= 0;
+
+        // The target counters only if it survives and has us in reach from where it stands.
+        if (!f.targetDies && target.CanAttackFrom(target.Cell, this, fromCell))
+        {
+            f.targetCounters = true;
+            f.counterDamage = ComputeDamage(target.attack, defense);
+            f.attackerHPAfter = Mathf.Max(0, currentHP - f.counterDamage);
+            f.attackerDies = f.attackerHPAfter <= 0;
+        }
+
+        return f;
     }
 
     /// <summary>
     /// Resolve an attack against 'target': this unit hits first, and if the target
     /// survives and can reach back, it counterattacks. Returns a short battle log.
+    ///
+    /// The exchange is decided by PreviewAttack before any HP moves, so what resolves is
+    /// exactly what the forecast panel promised.
     /// </summary>
     public string Attack(Unit target)
     {
+        AttackForecast f = PreviewAttack(target);
+
+        if (!f.isValid)
+        {
+            Debug.LogWarning(
+                $"[Unit] '{unitName}' was told to attack " +
+                $"'{(target != null ? target.unitName : "null")}' but the attack isn't legal.", this);
+            return string.Empty;
+        }
+
         var log = new System.Text.StringBuilder();
 
-        // Primary strike
-        int before = target.currentHP;
         target.TakeDamage(attack);
-        int dealt = before - target.currentHP;
-        log.AppendLine($"{unitName} attacks {target.unitName} for {dealt}.");
+        log.AppendLine($"{unitName} attacks {target.unitName} for {f.ActualDamage}.");
 
-        // Counterattack, if target survived and has us in range
-        if (target.IsAlive && target.CanAttack(this))
+        if (f.targetCounters)
         {
-            int cBefore = currentHP;
             TakeDamage(target.attack);
-            int cDealt = cBefore - currentHP;
-            log.AppendLine($"{target.unitName} counters for {cDealt}.");
+            log.AppendLine($"{target.unitName} counters for {f.ActualCounterDamage}.");
         }
-        else if (!target.IsAlive)
+        else if (f.targetDies)
         {
             log.AppendLine($"{target.unitName} is defeated!");
         }
