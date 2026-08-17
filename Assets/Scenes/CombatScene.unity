@@ -685,7 +685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 130}
+  m_AnchoredPosition: {x: -30, y: 140}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &82810454
@@ -1065,6 +1065,7 @@ GameObject:
   - component: {fileID: 399617157}
   - component: {fileID: 399617159}
   - component: {fileID: 399617158}
+  - component: {fileID: 399617160}
   m_Layer: 5
   m_Name: ForecastPanel
   m_TagString: Untagged
@@ -1129,6 +1130,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399617156}
   m_CullTransparentMesh: 1
+--- !u!114 &399617160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399617156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d9a7179ffb530408d89c23b0a049f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleForecastPanel
+  panel: {fileID: 0}
+  attackerNameText: {fileID: 0}
+  attackerHPText: {fileID: 0}
+  attackerDamageText: {fileID: 0}
+  targetNameText: {fileID: 0}
+  targetHPText: {fileID: 0}
+  targetDamageText: {fileID: 0}
+  counterText: {fileID: 0}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  lethalColor: {r: 1, g: 0.35, b: 0.35, a: 1}
 --- !u!1 &506148942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -208}
+  m_AnchoredPosition: {x: -30, y: -210}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &652148978
@@ -1784,7 +1807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -73}
+  m_AnchoredPosition: {x: -30, y: -70}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &744385669
@@ -5904,9 +5927,9 @@ RectTransform:
   - {fileID: 2095072731}
   - {fileID: 506148943}
   - {fileID: 743838934}
+  - {fileID: 1858278699}
   - {fileID: 1973136427}
   - {fileID: 399617157}
-  - {fileID: 1858278699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5936,9 +5959,9 @@ MonoBehaviour:
   enemyPhaseColor: {r: 0.95, g: 0.35, b: 0.35, a: 1}
   endTurnButton: {fileID: 743838935}
   resultPanel: {fileID: 1858278698}
-  resultText: {fileID: 0}
-  retryButton: {fileID: 0}
-  mainMenuButton: {fileID: 0}
+  resultText: {fileID: 710720381}
+  retryButton: {fileID: 163522066}
+  mainMenuButton: {fileID: 23579623}
   victoryMessage: Victory
   defeatMessage: Defeat
   drawMessage: Draw
@@ -5977,7 +6000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 53}
+  m_AnchoredPosition: {x: -30, y: 70}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &957320225
@@ -6593,7 +6616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 200}
+  m_AnchoredPosition: {x: -30, y: 210}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527437376
@@ -6776,7 +6799,7 @@ MonoBehaviour:
   stayHighlightPrefab: {fileID: 0}
   combatCamera: {fileID: 1660495630}
   cameraController: {fileID: 0}
-  unitInfoPanel: {fileID: 0}
+  unitInfoPanel: {fileID: 1973136430}
   forecastPanel: {fileID: 0}
 --- !u!4 &1655159041
 Transform:
@@ -6985,7 +7008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -11}
+  m_AnchoredPosition: {x: -30, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737087136
@@ -7314,13 +7337,14 @@ GameObject:
   - component: {fileID: 1973136427}
   - component: {fileID: 1973136429}
   - component: {fileID: 1973136428}
+  - component: {fileID: 1973136430}
   m_Layer: 5
   m_Name: UnitInfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1973136427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7385,6 +7409,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973136426}
   m_CullTransparentMesh: 1
+--- !u!114 &1973136430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973136426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d01b2c4531fc84b8ba217e478acc9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfoPanel
+  panel: {fileID: 1973136426}
+  nameText: {fileID: 1527437376}
+  teamText: {fileID: 82810454}
+  hpText: {fileID: 957320225}
+  attackText: {fileID: 1737087136}
+  defenseText: {fileID: 744385669}
+  moveText: {fileID: 2035847340}
+  rangeText: {fileID: 652148978}
+  statusText: {fileID: 0}
+  hpFill: {fileID: 0}
+  playerColor: {r: 0.3, g: 0.75, b: 1, a: 1}
+  enemyColor: {r: 0.95, g: 0.35, b: 0.35, a: 1}
 --- !u!1 &2035847338
 GameObject:
   m_ObjectHideFlags: 0
@@ -7419,7 +7467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: -137}
+  m_AnchoredPosition: {x: -30, y: -140}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035847340
