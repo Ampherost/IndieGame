@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559a611b10c2460488c77a0a4f62716c, type: 3}
+  m_Name: Piplup
+  m_EditorClassIdentifier: Assembly-CSharp::UnitDefinition
+  unitName: Unit
+  prefab: {fileID: 3846869888202506256, guid: 8561ba63a7415854398791bc32f9b773, type: 3}
+  maxHP: 20
+  attack: 5
+  defense: 2
+  moveRange: 4
+  attackRange: 1
