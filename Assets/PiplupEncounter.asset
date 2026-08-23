@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 686f2cad202aafc4da7cb0742a4d9195, type: 3}
-  m_Name: NewEncounter
+  m_Name: PiplupEncounter
   m_EditorClassIdentifier: Assembly-CSharp::EncounterData
   combatSceneName: CombatScene
   returnSceneName: 
-  playerSpawnCells: []
+  playerSpawnCells:
+  - {x: 5, y: 7}
   maxDeployed: 4
-  enemies: []
+  enemies:
+  - definition: {fileID: 11400000, guid: b9d26fbc586166e429d7c1efcad1fad0, type: 2}
+    cell: {x: 10, y: 7}
+    nameOverride: Piplup
+    isBoss: 0
   victory: 0
   roundsToSurvive: 5
   onDefeat: 0

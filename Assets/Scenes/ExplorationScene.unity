@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 170626768}
   - component: {fileID: 170626771}
   - component: {fileID: 170626772}
+  - component: {fileID: 170626774}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -487,6 +488,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.625, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &170626774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170626764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01558a909c06b04c951e50722fdcd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverworldPlayerPlacer
+  offset: {x: 0, y: -0.5}
 --- !u!1 &264607371
 GameObject:
   m_ObjectHideFlags: 0
@@ -33420,6 +33434,7 @@ GameObject:
   - component: {fileID: 2075345933}
   - component: {fileID: 2075345935}
   - component: {fileID: 2075345934}
+  - component: {fileID: 2075345936}
   m_Layer: 8
   m_Name: Piplup
   m_TagString: Untagged
@@ -33571,9 +33586,9 @@ MonoBehaviour:
     onOptionA:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1560505731}
-          m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
-          m_MethodName: LoadCombat
+        - m_Target: {fileID: 2075345936}
+          m_TargetAssemblyTypeName: EncounterTrigger, Assembly-CSharp
+          m_MethodName: Begin
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -33614,6 +33629,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2075345936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075345930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0b9012bf2d4a747ad4b054c72ef9d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EncounterTrigger
+  encounter: {fileID: 11400000, guid: 7937b5cbf749a9844b33574d0299baa3, type: 2}
+  onceOnly: 1
+  onAlreadyCleared:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &4540633751422655683
 PrefabInstance:
   m_ObjectHideFlags: 0
