@@ -311,12 +311,20 @@ public class BattleRunner : MonoBehaviour
         if (resultsWritten) return;
         resultsWritten = true;
 
-        bool victory = winner == Team.Player;
-
         BattleLauncher.RecordResult(encounter, winner);
-        WriteResultsToParty(victory);
+        WriteResultsToParty(winner == Team.Player);
 
-        if (autoReturn) StartCoroutine(ReturnAfterDelay());
+        // Nothing else happens here — CombatHUD's buttons drive what comes next.
+    }
+
+    /// <summary>Restart this battle from the party's pre-battle HP. Backs the Retry button.</summary>
+    public void Retry()
+    {
+        if (leaving) return;
+        leaving = true;
+
+        RestorePreBattleHP();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
