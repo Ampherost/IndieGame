@@ -6654,6 +6654,7 @@ MonoBehaviour:
   resultText: {fileID: 710720381}
   retryButton: {fileID: 163522066}
   mainMenuButton: {fileID: 23579623}
+  continueButton: {fileID: 1338506547}
   victoryMessage: Victory
   defeatMessage: Defeat
   drawMessage: Draw
@@ -8104,7 +8105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1858278699
 RectTransform:
   m_ObjectHideFlags: 0

@@ -44,6 +44,8 @@ public class CombatHUD : MonoBehaviour
     public Button retryButton;
     [Tooltip("Optional. Loads MainMenuScene.")]
     public Button mainMenuButton;
+    [Tooltip("Shown on victory. Returns to the overworld.")]
+    public Button continueButton;
 
     public string victoryMessage = "Victory";
     public string defeatMessage = "Defeat";
@@ -66,11 +68,26 @@ public class CombatHUD : MonoBehaviour
             endTurnButton.onClick.AddListener(OnEndTurnPressed);
             endTurnButton.interactable = false;
         }
+        if (continueButton != null)
+            continueButton.onClick.AddListener(() =>
+            {
+                if (BattleRunner.Instance != null) BattleRunner.Instance.ReturnNow();
+                else SceneManager.LoadScene("MainMenuScene");   // standalone combat scene
+            });
+
         if (retryButton != null)
             retryButton.onClick.AddListener(() =>
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name));
+            {
+                if (BattleRunner.Instance != null) BattleRunner.Instance.Retry();
+                else SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            });
+
         if (mainMenuButton != null)
-            mainMenuButton.onClick.AddListener(() => SceneManager.LoadScene("MainMenuScene"));
+            mainMenuButton.onClick.AddListener(() =>
+            {
+                BattleLauncher.ClearPending();   // don't carry a stale encounter into the next run
+                SceneManager.LoadScene("MainMenuScene");
+            });
 
         if (autoAttachHealthBars)
             foreach (var unit in FindObjectsByType<Unit>(FindObjectsSortMode.None))
@@ -143,16 +160,16 @@ public class CombatHUD : MonoBehaviour
         if (phaseBannerPanel != null) phaseBannerPanel.SetActive(false);
         if (endTurnButton != null) endTurnButton.interactable = false;
 
-        if (resultPanel == null || resultText == null)
-        {
-            Debug.LogWarning("[CombatHUD] Combat ended but no result panel is assigned — " +
-                             "the outcome only appears in the console.", this);
-            return;
-        }
+        bool victory = winner == Team.Player;
 
-        if (winner == Team.Player) { resultText.text = victoryMessage; resultText.color = playerPhaseColor; }
+        if (victory) { resultText.text = victoryMessage; resultText.color = playerPhaseColor; }
         else if (winner == Team.Enemy) { resultText.text = defeatMessage; resultText.color = enemyPhaseColor; }
         else { resultText.text = drawMessage; resultText.color = Color.white; }
+
+        // Victory offers one way forward; anything else offers a way to try again or bail out.
+        if (continueButton != null) continueButton.gameObject.SetActive(victory);
+        if (retryButton != null) retryButton.gameObject.SetActive(!victory);
+        if (mainMenuButton != null) mainMenuButton.gameObject.SetActive(!victory);
 
         resultPanel.SetActive(true);
     }
