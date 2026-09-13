@@ -1,0 +1,4 @@
+{
+    "name": "Verdaneth.Gameplay",
+    "references": ["Unity.InputSystem", "Unity.TextMeshPro", "UnityEngine.UI"]
+}

@@ -1,0 +1,5 @@
+{
+    "name": "Verdaneth.PlayModeTests",
+    "references": ["Verdaneth.Gameplay"],
+    "optionalUnityReferences": ["TestAssemblies"]
+}
