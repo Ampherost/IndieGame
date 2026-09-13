@@ -42,6 +42,12 @@ public class TurnManager : MonoBehaviour
     /// <summary>False until the first phase begins. Input and end-checks stay parked until then.</summary>
     public bool CombatStarted { get; private set; }
 
+    // Held through player movement and the attack-resolution pause.
+    public bool IsPlayerActionInProgress { get; internal set; }
+
+    public bool CanEndPlayerPhase => CombatStarted && !CombatOver &&
+        CurrentPhase == Team.Player && !IsPlayerActionInProgress;
+
     /// <summary>True once the battle has resolved. No further phases will begin.</summary>
     public bool CombatOver { get; private set; }
 
@@ -255,7 +261,8 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     public void EndPhaseEarly(Team team)
     {
-        if (CombatOver || CurrentPhase != team) return;
+        if (!CombatStarted || CombatOver || CurrentPhase != team) return;
+        if (team == Team.Player && !CanEndPlayerPhase) return;
 
         foreach (var u in allUnits)
             if (u != null && u.IsAlive && u.team == team)

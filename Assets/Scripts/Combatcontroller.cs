@@ -74,7 +74,7 @@ public class CombatController : MonoBehaviour
 
     private void Update()
     {
-        if (TurnManager.Instance == null) return;
+        if (TurnManager.Instance == null || !TurnManager.Instance.CombatStarted) return;
 
         // Battle resolved: clean up once, then ignore input permanently.
         if (TurnManager.Instance.CombatOver)
@@ -303,10 +303,21 @@ public class CombatController : MonoBehaviour
         reachable.Clear();
         inputLocked = true;
 
-        yield return StartCoroutine(acting.MoveAlong(path));
+        TurnManager turns = TurnManager.Instance;
+        turns.IsPlayerActionInProgress = true;
+        try
+        {
+            yield return StartCoroutine(acting.MoveAlong(path));
+        }
+        finally
+        {
+            if (turns != null) turns.IsPlayerActionInProgress = false;
+            inputLocked = false;
+        }
 
-        inputLocked = false;
-
+        if (turns == null || turns.CombatOver || turns.CurrentPhase != Team.Player ||
+            acting == null || !acting.IsAlive || selectedUnit != acting)
+            yield break;
         AfterArrival(acting);
     }
 
@@ -365,24 +376,33 @@ public class CombatController : MonoBehaviour
     private IEnumerator ResolveAttack(Unit attacker, Unit target)
     {
         inputLocked = true;
-        ClearHighlights();
-        if (forecastPanel != null) forecastPanel.Hide();
+        TurnManager turns = TurnManager.Instance;
+        turns.IsPlayerActionInProgress = true;
+        try
+        {
+            ClearHighlights();
+            if (forecastPanel != null) forecastPanel.Hide();
 
-        string log = attacker.Attack(target);
-        Debug.Log(log);
+            string log = attacker.Attack(target);
+            Debug.Log(log);
 
-        // If you want battle text on-screen, this is where DialogueManager slots in:
-        // if (DialogueManager.Instance != null)
-        //     DialogueManager.Instance.ShowDialogue(log.Split('\n'));
+            // If you want battle text on-screen, this is where DialogueManager slots in:
+            // if (DialogueManager.Instance != null)
+            //     DialogueManager.Instance.ShowDialogue(log.Split('\n'));
 
-        yield return new WaitForSeconds(0.4f);   // brief beat for the exchange
+            yield return new WaitForSeconds(0.4f);   // brief beat for the exchange
+        }
+        finally
+        {
+            if (turns != null) turns.IsPlayerActionInProgress = false;
+            inputLocked = false;
+        }
 
         // The kill may have ended the battle during that pause — if so, stop here and
         // let Update run the end-of-combat cleanup instead of starting another turn.
-        if (TurnManager.Instance.CombatOver)
+        if (turns == null || turns.CombatOver || turns.CurrentPhase != Team.Player)
             yield break;
 
-        inputLocked = false;
         FinishUnitTurn();
     }
 

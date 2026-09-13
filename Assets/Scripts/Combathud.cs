@@ -137,8 +137,7 @@ public class CombatHUD : MonoBehaviour
     {
         if (endTurnButton == null || turnManager == null) return;
 
-        endTurnButton.interactable =
-            !turnManager.CombatOver && turnManager.CurrentPhase == Team.Player;
+        endTurnButton.interactable = turnManager.CanEndPlayerPhase;
     }
 
     // ---- Event handlers ----
